@@ -61,8 +61,7 @@ File_1940 <- read_csv("C:/CGUIM_BigData_FinalReport-B0344122/File_1940.csv", ski
     ## )
 
     ## Warning: 1 parsing failure.
-    ## row col   expected    actual                                                  file
-    ##   1  -- 12 columns 9 columns 'C:/CGUIM_BigData_FinalReport-B0344122/File_1940.csv'
+    ## row # A tibble: 1 x 5 col     row   col   expected    actual expected   <int> <chr>      <chr>     <chr> actual 1     1  <NA> 12 columns 9 columns file # ... with 1 more variables: file <chr>
 
 ``` r
 visitorstatictis1 <- read_csv("C:/CGUIM_BigData_FinalReport-B0344122/visitorstatictis1.csv")
@@ -129,10 +128,9 @@ X104oversea_B1_1a <- read_csv("C:/CGUIM_BigData_FinalReport-B0344122/104oversea_
     ##   上學年度畢業生人數_女 = col_integer()
     ## )
 
-資料處理與清洗
---------------
-
 ``` r
+## 資料處理與清洗
+
 #資料清洗
 
 #File_1940清洗
@@ -146,7 +144,7 @@ File_1940 <- File_1940[-1,]
 visitorstatictis1 <- visitorstatictis1[-1,]
 visitorstatictis1 <- visitorstatictis1[-1,]
 names(visitorstatictis1)[1] <-"year"
-names(visitorstatictis1)[2] <-"總計人數"
+names(visitorstatictis1)[2] <-"pop"
 names(visitorstatictis1)[3] <-"成長率"
 names(visitorstatictis1)[4] <-"指數"
 names(visitorstatictis1)[5] <-"外籍旅客人數"
@@ -176,36 +174,12 @@ names(Student_RPT_05)[12] <-"HKMacaustudentcount"
 names(Student_RPT_05)[13] <-"HKMacauMstudentcount"
 names(Student_RPT_05)[14] <-"HKMacauFstudentcount"
 
-student101data<-Student_RPT_05[grepl("101",Student_RPT_05$"學年度"),]
-```
+student101data<-Student_RPT_05[grepl("101",Student_RPT_05$"year"),]
+student102data<-Student_RPT_05[grepl("102",Student_RPT_05$"year"),]
+student103data<-Student_RPT_05[grepl("103",Student_RPT_05$"year"),]
+student104data<-Student_RPT_05[grepl("104",Student_RPT_05$"year"),]
+student105data<-Student_RPT_05[grepl("105",Student_RPT_05$"year"),]
 
-    ## Warning: Unknown or uninitialised column: '學年度'.
-
-``` r
-student102data<-Student_RPT_05[grepl("102",Student_RPT_05$"學年度"),]
-```
-
-    ## Warning: Unknown or uninitialised column: '學年度'.
-
-``` r
-student103data<-Student_RPT_05[grepl("103",Student_RPT_05$"學年度"),]
-```
-
-    ## Warning: Unknown or uninitialised column: '學年度'.
-
-``` r
-student104data<-Student_RPT_05[grepl("104",Student_RPT_05$"學年度"),]
-```
-
-    ## Warning: Unknown or uninitialised column: '學年度'.
-
-``` r
-student105data<-Student_RPT_05[grepl("105",Student_RPT_05$"學年度"),]
-```
-
-    ## Warning: Unknown or uninitialised column: '學年度'.
-
-``` r
 #X104oversea_B1_1a清洗
 names(X104oversea_B1_1a)[2] <-"school"
 names(X104oversea_B1_1a)[4] <-"country"
@@ -448,7 +422,13 @@ Oceaniadata<-X104oversea_B1_1a[grepl("大洋洲",X104oversea_B1_1a$"type"),]
 NAdata<-X104oversea_B1_1a[grepl("北美洲",X104oversea_B1_1a$"type"),]
 SAdata<-X104oversea_B1_1a[grepl("南美洲",X104oversea_B1_1a$"type"),]
 
-#各國僑生在學人數
+X104oversea_B1_1a$"僑居地"<- X104oversea_B1_1a$country
+```
+
+資料探索
+--------
+
+``` r
 library(dplyr)
 ```
 
@@ -466,40 +446,131 @@ library(dplyr)
     ##     intersect, setdiff, setequal, union
 
 ``` r
-overseastudentcountanalyze = summarise(group_by(X104oversea_B1_1a,country), "人數" = sum(studentcount) ) 
+#各國僑生在學人數
+overseastudentcountanalyze <- summarise(group_by(X104oversea_B1_1a,country),count = sum(studentcount)) 
+
 ##僑居地前十名及人數
+overseastudentcountresult <- head(overseastudentcountanalyze[order(overseastudentcountanalyze$count,decreasing = T),],10)
 knitr::kable(
-head(overseastudentcountanalyze[order(overseastudentcountanalyze$"人數",decreasing = T),],10))
+overseastudentcountresult
+)
 ```
 
-| country  | 人數 |
-|:---------|:----:|
-| 馬來西亞 | 7013 |
-| 印尼     | 1100 |
-| 緬甸     |  451 |
-| 越南     |  306 |
-| 泰國     |  259 |
-| 美國     |  251 |
-| 南韓     |  187 |
-| 加拿大   |  179 |
-| 日本     |  174 |
-| 新加坡   |  88  |
+| country  |  count|
+|:---------|------:|
+| 馬來西亞 |   7013|
+| 印尼     |   1100|
+| 緬甸     |    451|
+| 越南     |    306|
+| 泰國     |    259|
+| 美國     |    251|
+| 南韓     |    187|
+| 加拿大   |    179|
+| 日本     |    174|
+| 新加坡   |     88|
+
+``` r
+library(ggplot2)
+```
+
+    ## Warning: package 'ggplot2' was built under R version 3.3.3
+
+``` r
+qplot(x=country,                               
+      y=count,                              
+      data=head(overseastudentcountanalyze[order(overseastudentcountanalyze$count,decreasing = T),],10),                    geom="point",                         
+      main = "僑居地前十名及人數",  
+      xlab="僑居地",                          
+      ylab="人數",
+      color = country
+      )
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-2-1.png)
 
 ``` r
 #各級學校僑生現況
 presentofoversea<-head(File_1940[order(File_1940$"學年度",decreasing = T),],10)
-knitr::kable(presentofoversea)
+presentofoversea104 <- presentofoversea[grepl("104",presentofoversea$"學年度"),]
+presentofoversea104$"學年度" <- NULL
+presentofoversea104$"總計" <- NULL
+presentofoversea104$"計" <- NULL
+presentofoversea104L<-stack(presentofoversea104) 
+presentofoversea104chart <- ggplot(data=presentofoversea104L) +
+geom_bar(aes(x=factor(1),
+                 y=as.numeric(values),
+                 fill=ind),
+             stat = "identity"
+             ) + coord_polar("y", start=0)
+
+presentofoversea104chart
 ```
 
-學年度 總計 計 公私立大學 國防 醫學院 僑　生 先修部 專科 學校 高國中 職業 學校 國小 各級 補校 海青班 ------- ------ ------ ----------- ------------ -------------- ---------- ------- ---------- ----- ---------- ------- 99 15525 14664 11951 75 1554 109 545 147 283 - 861 98 14788 14109 11228 72 1628 152 602 160 267 - 679 97 13223 12661 10047 74 1344 186 605 220 132 53 562 96 12556 12137 9450 75 1348 226 576 263 123 76 419 104 25944 24765 21802 88 990 58 642 779 400 6 1179 103 22685 21437 18741 81 1248 64 918 0 385 NA 1248 102 19300 18068 15866 80 1123 66 505 115 313 NA 1232 101 17750 16472 14214 74 1141 55 516 134 338 - 1278 100 16215 15333 13193 75 968 66 597 139 295 - 882
+![](README_files/figure-markdown_github/unnamed-chunk-2-2.png)
+
+``` r
+presentofoversea104L$"比例(%)" <- (as.numeric(presentofoversea104L$values)/sum(as.numeric(presentofoversea104L$values)))*100
+names(presentofoversea104L)[1] <-"學校類型"
+names(presentofoversea104L)[2] <-"總計人數"
+os104summary <- data.frame(presentofoversea104L)
+knitr::kable(os104summary)
+```
+
+| 學校類型 | 總計人數   |   比例...  |
+|:---------|:-----------|:----------:|
+| 21802    | 公私立大學 | 84.0348443 |
+| 88       | 國防       |            |
+| 醫學院   | 0.3391921  |            |
+| 990      | 僑　生     |            |
+| 先修部   | 3.8159112  |            |
+| 58       | 專科       |            |
+| 學校     | 0.2235584  |            |
+| 642      | 高國中     |  2.4745606 |
+| 779      | 職業       |            |
+| 學校     | 3.0026210  |            |
+| 400      | 國小       |  1.5417823 |
+| 6        | 各級       |            |
+| 補校     | 0.0231267  |            |
+| 1179     | 海青班     |  4.5444033 |
 
 ``` r
 #僑生入讀台灣大專學校情況
 schoolcountanalyze =  summarise(group_by(X104oversea_B1_1a,school), "人數" = sum(studentcount)) 
 
+#僑生入讀台灣大專學校率
+student101rate <- sum(as.numeric(student101data$overseastudentcount))
+student102rate <- sum(as.numeric(student102data$overseastudentcount))
+student103rate <- sum(as.numeric(student103data$overseastudentcount))
+student104rate <- sum(as.numeric(student104data$overseastudentcount))
+student105rate <- sum(as.numeric(student105data$overseastudentcount))
+osstudent101to105rate <- c(student101rate,student102rate,student103rate,student104rate,student105rate)
+statyear <- c("101","102","103","104","105")
+overseastudentrate <- data.frame(statyear,osstudent101to105rate)
+
+ggplot(overseastudentrate, aes(x=statyear, y=osstudent101to105rate, group = 1)) + geom_line()
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-2-3.png)
+
+``` r
+#旅客來台旅遊率
+visitor101to105rate <- visitorstatictis1
+for (i in 1:56){
+  visitor101to105rate <- visitor101to105rate[-1,]
+}
+ROCYear <- c("101","102","103","104")
+visitor101to105rate$ROCYear <- ROCYear
+
+ggplot(visitor101to105rate, aes(x=ROCYear, y=pop, group = 1)) + geom_line()
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-2-4.png)
+
+``` r
 ##最多僑生入讀的大專學校
 knitr::kable(
-head(schoolcountanalyze[order(schoolcountanalyze$"人數",decreasing = T),],10))
+head(schoolcountanalyze[order(schoolcountanalyze$"人數",decreasing = T),],10)
+)
 ```
 
 | school                 | 人數 |
@@ -561,6 +632,7 @@ knitr::kable(
 
 ``` r
 ###最多僑生入讀的科系
+library(dplyr)
 majorcountanalyze =  summarise(group_by(Student_RPT_05,Major), "僑生人數" = sum(as.numeric(overseastudentcount)), "港澳生人數" = sum(as.numeric(HKMacaustudentcount)))
 osmajorresult <- data.frame(majorcountanalyze$Major,majorcountanalyze$"僑生人數")
 knitr::kable(
@@ -660,19 +732,12 @@ knitr::kable(
 |:-----|:-------|:---------|:---------|:---------|:---------|:-------------|:-------------|:---------|:---------|:---------|:-----------|:-----------|:-----------|
 | 105  | 私立   | 一般大學 | 1009     | 長庚大學 | 480109   | 資訊管理學系 | 學士班(日間) | 0        | 0        | 0        | 2          | 1          | 1          |
 
-探索式資料分析
---------------
-
-圖文並茂圖文並茂
+資料分析
+--------
 
 ``` r
 #這是R Code Chunk
 library(ggplot2)
-```
-
-    ## Warning: package 'ggplot2' was built under R version 3.3.3
-
-``` r
 library(choroplethr)
 ```
 
@@ -723,11 +788,7 @@ library(choroplethr)
 
 ``` r
 library(ggmap)
-```
 
-    ## Warning: package 'ggmap' was built under R version 3.3.3
-
-``` r
 AsiaMap <- get_map(location = "Asia", zoom = 3, maptype = 'satellite',language = "zh-TW")
 ```
 

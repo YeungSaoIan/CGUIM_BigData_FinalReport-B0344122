@@ -24,10 +24,6 @@ Student_RPT_05是現時台灣各大專院校外藉學生資料包括人數國藉
 ```{r}
 #這是R Code Chunk
 library(readr)
-library(dplyr)
-library(ggplot2)
-library(choroplethr)
-library(ggmap)
 File_1940 <- read_csv("C:/CGUIM_BigData_FinalReport-B0344122/File_1940.csv", skip = 3)
 
 visitorstatictis1 <- read_csv("C:/CGUIM_BigData_FinalReport-B0344122/visitorstatictis1.csv")
@@ -317,10 +313,11 @@ NAdata<-X104oversea_B1_1a[grepl("北美洲",X104oversea_B1_1a$"type"),]
 SAdata<-X104oversea_B1_1a[grepl("南美洲",X104oversea_B1_1a$"type"),]
 
 X104oversea_B1_1a$"僑居地"<- X104oversea_B1_1a$country
-
+```
 
 ## 資料探索
-
+```{r}
+library(dplyr)
 #各國僑生在學人數
 overseastudentcountanalyze <- summarise(group_by(X104oversea_B1_1a,country),count = sum(studentcount)) 
 
@@ -330,7 +327,8 @@ knitr::kable(
 overseastudentcountresult
 )
 
-knitr::kable(
+library(ggplot2)
+
 qplot(x=country,                               
       y=count,                              
       data=head(overseastudentcountanalyze[order(overseastudentcountanalyze$count,decreasing = T),],10),                    geom="point",                         
@@ -339,7 +337,6 @@ qplot(x=country,
       ylab="人數",
       color = country
       )
-)
 
 #各級學校僑生現況
 presentofoversea<-head(File_1940[order(File_1940$"學年度",decreasing = T),],10)
@@ -355,7 +352,7 @@ geom_bar(aes(x=factor(1),
              stat = "identity"
              ) + coord_polar("y", start=0)
 
-knitr::kable(presentofoversea104chart)
+presentofoversea104chart
 
 presentofoversea104L$"比例(%)" <- (as.numeric(presentofoversea104L$values)/sum(as.numeric(presentofoversea104L$values)))*100
 names(presentofoversea104L)[1] <-"學校類型"
@@ -375,9 +372,9 @@ student105rate <- sum(as.numeric(student105data$overseastudentcount))
 osstudent101to105rate <- c(student101rate,student102rate,student103rate,student104rate,student105rate)
 statyear <- c("101","102","103","104","105")
 overseastudentrate <- data.frame(statyear,osstudent101to105rate)
-knitr::kable(
+
 ggplot(overseastudentrate, aes(x=statyear, y=osstudent101to105rate, group = 1)) + geom_line()
-)
+
 
 #旅客來台旅遊率
 visitor101to105rate <- visitorstatictis1
@@ -386,9 +383,9 @@ for (i in 1:56){
 }
 ROCYear <- c("101","102","103","104")
 visitor101to105rate$ROCYear <- ROCYear
-knitr::kable(
+
 ggplot(visitor101to105rate, aes(x=ROCYear, y=pop, group = 1)) + geom_line()
-)
+
 
 ##最多僑生入讀的大專學校
 knitr::kable(
@@ -410,11 +407,13 @@ knitr::kable(
 )
 
 ###最多僑生入讀的科系
+library(dplyr)
 majorcountanalyze =  summarise(group_by(Student_RPT_05,Major), "僑生人數" = sum(as.numeric(overseastudentcount)), "港澳生人數" = sum(as.numeric(HKMacaustudentcount)))
 osmajorresult <- data.frame(majorcountanalyze$Major,majorcountanalyze$"僑生人數")
 knitr::kable(
   head(osmajorresult[order(majorcountanalyze$"僑生人數",decreasing = T),],10)
 )
+
 
 ###最多港澳生入讀的科系
 hkmmajorresult <- data.frame(majorcountanalyze$Major,majorcountanalyze$"港澳生人數")
