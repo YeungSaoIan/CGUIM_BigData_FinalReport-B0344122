@@ -1,133 +1,42 @@
-台灣旅遊與僑生來台就學
-================
+---
+title: "台灣旅遊與僑生來台就學"
+output: github_document
+---
 
-組員姓名
---------
 
+## 組員姓名
 資管二甲 B0344122 楊守仁
 
-分析議題背景
-------------
-
+## 分析議題背景
 從網路上的open data收集了歷年來台旅客的國藉及現時台灣各大專院校外藉學生等資料從而了解台灣的風光和旅遊，有沒有帶起外國人對台灣的興趣並且來台就/升學。
 
-分析動機
---------
-
+## 分析動機
 作為外國長大的僑生的一分子，藉著這個機會了解「同是天涯淪落人」的留台外國人的在台灣甚至在長庚的狀況。
 
-使用資料
---------
+## 使用資料
+File_1940是各級學校僑生資料
+visitorstatictis1是自1956年以來來台旅客人數及國藉資料
+Student_RPT_05是現時台灣各大專院校外藉學生資料包括人數國藉科系學制等資料
 
-File\_1940是各級學校僑生資料 visitorstatictis1是自1956年以來來台旅客人數及國藉資料 Student\_RPT\_05是現時台灣各大專院校外藉學生資料包括人數國藉科系學制等資料
-
-\*還有一份是"大專校院僑生及畢業生人數—按性別、校別與僑居地別分"資料，但資料尚有一些問題，所以尚未載入，但是連同作業一同commit
+*還有一份是"大專校院僑生及畢業生人數—按性別、校別與僑居地別分"資料，但資料尚有一些問題，所以尚未載入，但是連同作業一同commit
 
 載入使用資料們
-
-``` r
+```{r}
 #這是R Code Chunk
 library(readr)
 File_1940 <- read_csv("~/CGUIM_BigData_FinalReport-B0344122/File_1940.csv", skip = 3)
-```
 
-    ## Warning: Missing column names filled in: 'X1' [1], 'X2' [2]
-
-    ## Parsed with column specification:
-    ## cols(
-    ##   X1 = col_character(),
-    ##   X2 = col_character(),
-    ##   計 = col_character(),
-    ##   `公私立
-    ## 大　學` = col_character(),
-    ##   `國防
-    ## 醫學院` = col_character(),
-    ##   `僑　生
-    ## 先修部` = col_character(),
-    ##   `專科
-    ## 學校` = col_character(),
-    ##   高國中 = col_character(),
-    ##   `職業
-    ## 學校` = col_character(),
-    ##   國小 = col_integer(),
-    ##   `各級
-    ## 補校` = col_character(),
-    ##   海青班 = col_integer()
-    ## )
-
-    ## Warning: 1 parsing failure.
-    ## row col   expected    actual                                                 file
-    ##   1  -- 12 columns 9 columns '~/CGUIM_BigData_FinalReport-B0344122/File_1940.csv'
-
-``` r
 visitorstatictis1 <- read_csv("~/CGUIM_BigData_FinalReport-B0344122/visitorstatictis1.csv")
-```
 
-    ## Warning: Missing column names filled in: 'X2' [2], 'X3' [3], 'X4' [4],
-    ## 'X5' [5], 'X6' [6], 'X7' [7], 'X8' [8], 'X9' [9], 'X10' [10]
-
-    ## Parsed with column specification:
-    ## cols(
-    ##   `Visitor  Arrivals, 1956-2015` = col_character(),
-    ##   X2 = col_character(),
-    ##   X3 = col_character(),
-    ##   X4 = col_character(),
-    ##   X5 = col_character(),
-    ##   X6 = col_character(),
-    ##   X7 = col_character(),
-    ##   X8 = col_character(),
-    ##   X9 = col_character(),
-    ##   X10 = col_character()
-    ## )
-
-``` r
 Student_RPT_05 <- read_csv("~/CGUIM_BigData_FinalReport-B0344122/Student_RPT_05.csv")
-```
 
-    ## Warning: Missing column names filled in: 'X1' [1], 'X3' [3], 'X4' [4],
-    ## 'X5' [5], 'X6' [6], 'X7' [7], 'X8' [8], 'X9' [9]
-
-    ## Parsed with column specification:
-    ## cols(
-    ##   X1 = col_character(),
-    ##   `05.僑生、港澳生數` = col_character(),
-    ##   X3 = col_character(),
-    ##   X4 = col_character(),
-    ##   X5 = col_character(),
-    ##   X6 = col_character(),
-    ##   X7 = col_character(),
-    ##   X8 = col_character(),
-    ##   X9 = col_character(),
-    ##   `僑生總計：` = col_character(),
-    ##   `43833` = col_character(),
-    ##   `僑生男：` = col_character(),
-    ##   `21806` = col_character(),
-    ##   `僑生女：` = col_character(),
-    ##   `22027` = col_character()
-    ## )
-
-``` r
 X104oversea_B1_1a <- read_csv("~/CGUIM_BigData_FinalReport-B0344122/104oversea_B1-1a.csv")
 ```
 
-    ## Parsed with column specification:
-    ## cols(
-    ##   學校代碼 = col_character(),
-    ##   `學校名稱` = col_character(),
-    ##   等級 = col_character(),
-    ##   僑居地 = col_character(),
-    ##   在學學生人數_男 = col_integer(),
-    ##   在學學生人數_女 = col_integer(),
-    ##   新生 = col_integer(),
-    ##   舊生 = col_integer(),
-    ##   上學年度畢業生人數_男 = col_integer(),
-    ##   上學年度畢業生人數_女 = col_integer()
-    ## )
 
-資料處理與清洗
---------------
+## 資料處理與清洗
+```{r}
 
-``` r
 #資料清洗
 #File_1940清洗
 names(File_1940)[1] <-"學年度"
@@ -172,17 +81,8 @@ names(Student_RPT_05)[14] <-"港澳生女"
 
 #X104oversea_B1_1a清洗
 X104oversea_B1_1a$locationy[X104oversea_B1_1a$"僑居地" == c("馬來西亞")] <- "3.137956"
-```
-
-    ## Warning: Unknown or uninitialised column: 'locationy'.
-
-``` r
 X104oversea_B1_1a$locationx[X104oversea_B1_1a$"僑居地" == c("馬來西亞")] <- "101.687132"
-```
 
-    ## Warning: Unknown or uninitialised column: 'locationx'.
-
-``` r
 X104oversea_B1_1a$locationy[X104oversea_B1_1a$"僑居地" == c("南非")] <- "-30.909670"
 X104oversea_B1_1a$locationx[X104oversea_B1_1a$"僑居地" == c("南非")] <- "24.259127"
 
@@ -388,11 +288,7 @@ X104oversea_B1_1a$studentcount <- as.numeric(X104oversea_B1_1a$"在學學生人�
 
 #X104oversea_B1_1a清洗2
 X104oversea_B1_1a$type[X104oversea_B1_1a$"僑居地" %in% c("菲律賓","汶萊","泰國","孟加拉","斯里蘭卡","沙烏地阿拉伯","馬來西亞","緬甸","印尼","日本","新加坡","南韓","越南","阿拉伯聯合大公國","寮國","柬埔寨","巴基斯坦","巴林","印度","黎巴嫩","約旦","葉門","科威特")] <- "亞洲"
-```
 
-    ## Warning: Unknown or uninitialised column: 'type'.
-
-``` r
 X104oversea_B1_1a$type[X104oversea_B1_1a$"僑居地" %in% c("美國","加拿大","墨西哥","古巴","多明尼加","多米尼克","薩爾瓦多","尼加拉瓜","瓜地馬拉","貝里斯","巴拿馬","哥斯大黎加")] <- "北美洲"
 
 X104oversea_B1_1a$type[X104oversea_B1_1a$"僑居地" %in% c("厄瓜多","巴西","烏拉圭","巴拉圭","秘魯","智利","阿根廷","玻利維亞","哥倫比亞","委內瑞拉","宏都拉斯")] <- "南美洲"
@@ -426,115 +322,32 @@ testcgu<-test105[grepl("長庚大學",test105$"學校名稱"),]
 knitr::kable(
   head(presentofoversea)
 )
-```
 
-學年度 總計 計 公私立大學 國防 醫學院 僑　生 先修部 專科 學校 高國中 職業 學校 國小 各級 補校 海青班 ------- ------ ------ ----------- ------------ -------------- ---------- ------- ---------- ----- ---------- ------- 99 15525 14664 11951 75 1554 109 545 147 283 - 861 98 14788 14109 11228 72 1628 152 602 160 267 - 679 97 13223 12661 10047 74 1344 186 605 220 132 53 562 96 12556 12137 9450 75 1348 226 576 263 123 76 419 104 25944 24765 21802 88 990 58 642 779 400 6 1179 103 22685 21437 18741 81 1248 64 918 0 385 NA 1248
-
-``` r
 knitr::kable(
   head(presentofnational)
 )
-```
 
-| 學年度 | 設立別 | 學校類別 | 學校代碼 | 學校名稱     | 系所代碼 | 系所名稱               | 學制         | 僑生總計 | 僑生男 | 僑生女 | 港澳生總計 | 港澳生男 | 港澳生女 |
-|:-------|:-------|:---------|:---------|:-------------|:---------|:-----------------------|:-------------|:---------|:-------|:-------|:-----------|:---------|:---------|
-| 101    | 公立   | 一般大學 | 0001     | 國立政治大學 | 140101   | 教育學系               | 學士班(日間) | 11       | 2      | 9      | 2          | 0        | 2        |
-| 101    | 公立   | 一般大學 | 0001     | 國立政治大學 | 140101   | 教育學系               | 碩士班(日間) | 1        | 0      | 1      | 1          | 0        | 1        |
-| 101    | 公立   | 一般大學 | 0001     | 國立政治大學 | 140101   | 教育學系               | 博士班       | 1        | 0      | 1      | 0          | 0        | 0        |
-| 101    | 公立   | 一般大學 | 0001     | 國立政治大學 | 140203   | 華語文教學碩士學位學程 | 碩士班(日間) | 6        | 1      | 5      | 0          | 0        | 0        |
-| 101    | 公立   | 一般大學 | 0001     | 國立政治大學 | 140401   | 幼兒教育研究所         | 碩士班(日間) | 0        | 0      | 0      | 2          | 0        | 2        |
-| 101    | 公立   | 一般大學 | 0001     | 國立政治大學 | 220201   | 中國文學系             | 學士班(日間) | 8        | 2      | 6      | 11         | 5        | 6        |
-
-``` r
 knitr::kable(
   head(presentofprivate)
 )
-```
 
-| 學年度 | 設立別 | 學校類別 | 學校代碼 | 學校名稱 | 系所代碼 | 系所名稱     | 學制         | 僑生總計 | 僑生男 | 僑生女 | 港澳生總計 | 港澳生男 | 港澳生女 |
-|:-------|:-------|:---------|:---------|:---------|:---------|:-------------|:-------------|:---------|:-------|:-------|:-----------|:---------|:---------|
-| 101    | 私立   | 一般大學 | 1001     | 東海大學 | 210101   | 美術學系     | 學士班(日間) | 1        | 0      | 1      | 3          | 2        | 1        |
-| 101    | 私立   | 一般大學 | 1001     | 東海大學 | 210101   | 美術學系     | 碩士班(日間) | 1        | 1      | 0      | 0          | 0        | 0        |
-| 101    | 私立   | 一般大學 | 1001     | 東海大學 | 220201   | 中國文學系   | 學士班(日間) | 3        | 1      | 2      | 5          | 2        | 3        |
-| 101    | 私立   | 一般大學 | 1001     | 東海大學 | 220201   | 中國文學系   | 碩士班(日間) | 0        | 0      | 0      | 1          | 0        | 1        |
-| 101    | 私立   | 一般大學 | 1001     | 東海大學 | 220301   | 外國語文學系 | 學士班(日間) | 15       | 6      | 9      | 10         | 1        | 9        |
-| 101    | 私立   | 一般大學 | 1001     | 東海大學 | 220301   | 外國語文學系 | 碩士班(日間) | 1        | 1      | 0      | 0          | 0        | 0        |
-
-``` r
 knitr::kable(
   head(testcgu[order(testcgu$"學制",decreasing = T),],)
 )
 ```
 
-| 學年度 | 設立別 | 學校類別 | 學校代碼 | 學校名稱 | 系所代碼 | 系所名稱     | 學制         | 僑生總計 | 僑生男 | 僑生女 | 港澳生總計 | 港澳生男 | 港澳生女 |
-|:-------|:-------|:---------|:---------|:---------|:---------|:-------------|:-------------|:---------|:-------|:-------|:-----------|:---------|:---------|
-| 105    | 私立   | 一般大學 | 1009     | 長庚大學 | 230303   | 工業設計學系 | 學士班(日間) | 0        | 0      | 0      | 1          | 0        | 1        |
-| 105    | 私立   | 一般大學 | 1009     | 長庚大學 | 340302   | 工商管理學系 | 學士班(日間) | 2        | 1      | 1      | 3          | 3        | 0        |
-| 105    | 私立   | 一般大學 | 1009     | 長庚大學 | 340901   | 醫務管理學系 | 學士班(日間) | 2        | 1      | 1      | 6          | 1        | 5        |
-| 105    | 私立   | 一般大學 | 1009     | 長庚大學 | 420503   | 生物醫學系   | 學士班(日間) | 8        | 3      | 5      | 5          | 2        | 3        |
-| 105    | 私立   | 一般大學 | 1009     | 長庚大學 | 480109   | 資訊管理學系 | 學士班(日間) | 0        | 0      | 0      | 2          | 1        | 1        |
-| 105    | 私立   | 一般大學 | 1009     | 長庚大學 | 520103   | 電子工程學系 | 學士班(日間) | 0        | 0      | 0      | 3          | 3        | 0        |
 
-探索式資料分析
---------------
-
+## 探索式資料分析
 圖文並茂圖文並茂
-
-``` r
+```{r}
 #這是R Code Chunk
 library(ggplot2)
 library(choroplethr)
-```
-
-    ## Loading required package: acs
-
-    ## Loading required package: stringr
-
-    ## Loading required package: plyr
-
-    ## Loading required package: XML
-
-    ## 
-    ## Attaching package: 'acs'
-
-    ## The following object is masked from 'package:base':
-    ## 
-    ##     apply
-
-``` r
 library(ggmap)
 worldmap <- get_map(location = c(-47.52,-16.99,76.88,-33.37), zoom = 1,language = "zh-TW")
-```
-
-    ## Warning: bounding box given to google - spatial extent only approximate.
-
-    ## converting bounding box to center/zoom specification. (experimental)
-
-    ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=-25.18,14.68&zoom=1&size=640x640&scale=2&maptype=terrain&language=zh-TW&sensor=false
-
-``` r
 ggmap(worldmap)
-```
 
-    ## Warning in min(x): min 中沒有無漏失的引數; 回傳 Inf
-
-    ## Warning in max(x): max 中沒有無漏失的引數；回傳 -Inf
-
-    ## Warning in min(x): min 中沒有無漏失的引數; 回傳 Inf
-
-    ## Warning in max(x): max 中沒有無漏失的引數；回傳 -Inf
-
-![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)
-
-``` r
 AsiaMap <- get_map(location = "Asia", zoom = 3, maptype = 'satellite',language = "zh-TW")
-```
-
-    ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=Asia&zoom=3&size=640x640&scale=2&maptype=satellite&language=zh-TW&sensor=false
-
-    ## Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=Asia&sensor=false
-
-``` r
 AsiaMapO <- ggmap(AsiaMap)+ geom_point(data=asiadata, 
                aes(x=as.numeric(locationx), y=as.numeric(locationy),
                    color=as.numeric(在學學生人數_男),size=3.5))+ 
@@ -542,21 +355,8 @@ AsiaMapO <- ggmap(AsiaMap)+ geom_point(data=asiadata,
         low = "yellow",high = "red")+ 
     guides(size=FALSE)
 AsiaMapO
-```
 
-    ## Warning: Removed 4 rows containing missing values (geom_point).
-
-![](README_files/figure-markdown_github/unnamed-chunk-3-2.png)
-
-``` r
 EuroMap <- get_map(location = "Europe", zoom = 3, maptype = 'satellite')
-```
-
-    ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=Europe&zoom=3&size=640x640&scale=2&maptype=satellite&language=en-EN&sensor=false
-
-    ## Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=Europe&sensor=false
-
-``` r
 EuroMapO <- ggmap(EuroMap)+ geom_point(data=eurodata, 
                aes(x=as.numeric(locationx), y=as.numeric(locationy),
                    color=as.numeric(studentcount),size=3.5))+ 
@@ -564,21 +364,8 @@ EuroMapO <- ggmap(EuroMap)+ geom_point(data=eurodata,
         low = "yellow",high = "red")+ 
     guides(size=FALSE)
 EuroMapO
-```
 
-    ## Warning: Removed 1 rows containing missing values (geom_point).
-
-![](README_files/figure-markdown_github/unnamed-chunk-3-3.png)
-
-``` r
 OceaniaMap <- get_map(location = "Oceania", zoom = 3, maptype = 'satellite')
-```
-
-    ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=Oceania&zoom=3&size=640x640&scale=2&maptype=satellite&language=en-EN&sensor=false
-
-    ## Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=Oceania&sensor=false
-
-``` r
 OceaniaMapO <- ggmap(OceaniaMap)+ geom_point(data=Oceaniadata, 
                aes(x=as.numeric(locationx), y=as.numeric(locationy),
                    color=as.numeric(studentcount),size=3.5))+ 
@@ -586,19 +373,8 @@ OceaniaMapO <- ggmap(OceaniaMap)+ geom_point(data=Oceaniadata,
         low = "yellow",high = "red")+ 
     guides(size=FALSE)
 OceaniaMapO
-```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-4.png)
-
-``` r
 AfricaMap <- get_map(location = "Africa", zoom = 3, maptype = 'satellite')
-```
-
-    ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=Africa&zoom=3&size=640x640&scale=2&maptype=satellite&language=en-EN&sensor=false
-
-    ## Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=Africa&sensor=false
-
-``` r
 AfricaMapO <- ggmap(AfricaMap)+ geom_point(data=SAfricadata, 
                aes(x=as.numeric(locationx), y=as.numeric(locationy),
                    color=as.numeric("在學學生人數_男"),size=3.5))+ 
@@ -606,21 +382,8 @@ AfricaMapO <- ggmap(AfricaMap)+ geom_point(data=SAfricadata,
         low = "yellow",high = "red")+ 
     guides(size=FALSE)
 AfricaMapO
-```
 
-    ## Warning: 強制變更過程中產生了 NA
-
-![](README_files/figure-markdown_github/unnamed-chunk-3-5.png)
-
-``` r
 NAMap <- get_map(location = "North America", zoom = 3, maptype = 'satellite')
-```
-
-    ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=North+America&zoom=3&size=640x640&scale=2&maptype=satellite&language=en-EN&sensor=false
-
-    ## Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=North%20America&sensor=false
-
-``` r
 NAMapO <- ggmap(NAMap)+ geom_point(data=NAdata, 
                aes(x=as.numeric(locationx), y=as.numeric(locationy),
                    color=as.numeric("在學學生人數_男"),size=3.5))+ 
@@ -628,23 +391,8 @@ NAMapO <- ggmap(NAMap)+ geom_point(data=NAdata,
         low = "yellow",high = "red")+ 
     guides(size=FALSE)
 NAMapO
-```
 
-    ## Warning: 強制變更過程中產生了 NA
-
-    ## Warning: Removed 4 rows containing missing values (geom_point).
-
-![](README_files/figure-markdown_github/unnamed-chunk-3-6.png)
-
-``` r
 SAMap <- get_map(location = "South America", zoom = 3, maptype = 'satellite')
-```
-
-    ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=South+America&zoom=3&size=640x640&scale=2&maptype=satellite&language=en-EN&sensor=false
-
-    ## Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=South%20America&sensor=false
-
-``` r
 SAMapO <- ggmap(SAMap)+ geom_point(data=SAdata, 
                aes(x=as.numeric(locationx), y=as.numeric(locationy),
                    color=as.numeric("在學學生人數_男"),size=3.5))+ 
@@ -654,11 +402,5 @@ SAMapO <- ggmap(SAMap)+ geom_point(data=SAdata,
 SAMapO
 ```
 
-    ## Warning: 強制變更過程中產生了 NA
-
-![](README_files/figure-markdown_github/unnamed-chunk-3-7.png)
-
-期末專題分析規劃
-----------------
-
+## 期末專題分析規劃
 期末專題會結合手上的資料，按照不同國藉的僑生人數製作圖表及一個世界分佈地圖。然後還會了解數據，找出一些關於僑生的有趣現象在課堂報告跟老師和同學分享。
