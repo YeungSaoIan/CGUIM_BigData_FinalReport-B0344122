@@ -234,8 +234,8 @@ X100to105v1$locationx[X100to105v1$"國籍" == c("美國")] <- "-101.620433"
 X100to105v1$locationy[X100to105v1$"國籍" == c("阿根廷")] <- "-35.388441"
 X100to105v1$locationx[X100to105v1$"國籍" == c("阿根廷")] <- "-65.392241"
 
-X100to105v1$locationy[X100to105v1$"國籍" == c("南韓")] <- "37.592579"
-X100to105v1$locationx[X100to105v1$"國籍" == c("南韓")] <- "126.975279"
+X100to105v1$locationy[X100to105v1$"國籍" == c("韓國")] <- "37.592579"
+X100to105v1$locationx[X100to105v1$"國籍" == c("韓國")] <- "126.975279"
 
 X100to105v1$locationy[X100to105v1$"國籍" == c("紐西蘭")] <- "-41.299974"
 X100to105v1$locationx[X100to105v1$"國籍" == c("紐西蘭")] <- "174.776852"
@@ -407,6 +407,8 @@ X100to105v1$"地區"[X100to105v1$"國籍" == c("加拿大")] <- "北美洲"
 X100to105v1$"地區"[X100to105v1$"國籍" == c("巴西")] <- "南美洲"
 X100to105v1$"地區"[X100to105v1$"國籍" == c("墨西哥")] <- "南美洲"
 X100to105v1$"地區"[X100to105v1$"國籍" == c("阿根廷")] <- "南美洲"
+
+names(X100to105v1)[17] <-"count2016"
 
 asiavisitordata<-X100to105v1[grepl("亞洲",X100to105v1$"地區"),]
 eurovisitordata<-X100to105v1[grepl("歐洲",X100to105v1$"地區"),]
@@ -1442,7 +1444,46 @@ SAMapO
 
 ``` r
 #Visitor Map
+WorldMapvisitor <- ggmap(get_googlemap(center=c(0,0),
+                                       zoom=1, scale=1, filename="world", size=c(550,250)))
 ```
+
+    ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=0,0&zoom=1&size=550x250&scale=1&maptype=terrain&sensor=false
+
+``` r
+WorldMapvisitorO <- WorldMapvisitor + geom_point(data=X100to105v1, 
+                                                 aes(x=as.numeric(locationx), y=as.numeric(locationy),
+                                                     color=as.numeric(X100to105v1$"count2016"),size=1))+ 
+  scale_color_continuous(
+    low = "yellow",high = "red")+ 
+  guides(size=FALSE)
+WorldMapvisitorO
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-3-8.png)
+
+``` r
+visitor2016rank <- data.frame(X100to105v1$"國籍",X100to105v1$count2016)
+names(visitor2016rank)[1] <-"國籍"
+names(visitor2016rank)[2] <-"2016旅客人數"
+
+knitr::kable(
+  head(visitor2016rank[order(visitor2016rank$"2016旅客人數",decreasing = T),],10)
+)
+```
+
+|     | 國籍     | 2016旅客人數 |
+|-----|:---------|:------------:|
+| 1   | 日本     |    1896456   |
+| 2   | 韓國     |    887412    |
+| 11  | 美國     |    542261    |
+| 4   | 馬來西亞 |    500496    |
+| 5   | 新加坡   |    371663    |
+| 9   | 越南     |    194323    |
+| 8   | 泰國     |    193200    |
+| 6   | 印尼     |    192053    |
+| 7   | 菲律賓   |    171816    |
+| 10  | 加拿大   |    143691    |
 
 期末專題分析規劃
 ----------------
