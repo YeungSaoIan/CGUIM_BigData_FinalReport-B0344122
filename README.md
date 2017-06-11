@@ -129,6 +129,14 @@ X104oversea_B1_1a <- read_csv("C:/CGUIM_BigData_FinalReport-B0344122/104oversea_
     ## )
 
 ``` r
+library(readxl)
+```
+
+    ## Warning: package 'readxl' was built under R version 3.3.3
+
+``` r
+X100to105v1 <- read_excel("C:/CGUIM_BigData_FinalReport-B0344122/100to105v1.xlsx")
+
 ## 資料處理與清洗
 
 #資料清洗
@@ -179,6 +187,233 @@ student102data<-Student_RPT_05[grepl("102",Student_RPT_05$"year"),]
 student103data<-Student_RPT_05[grepl("103",Student_RPT_05$"year"),]
 student104data<-Student_RPT_05[grepl("104",Student_RPT_05$"year"),]
 student105data<-Student_RPT_05[grepl("105",Student_RPT_05$"year"),]
+
+#X100to105v1清洗
+X100to105v1$locationy[X100to105v1$"國籍" == c("馬來西亞")] <- "3.137956"
+```
+
+    ## Warning: Unknown or uninitialised column: 'locationy'.
+
+``` r
+X100to105v1$locationx[X100to105v1$"國籍" == c("馬來西亞")] <- "101.687132"
+```
+
+    ## Warning: Unknown or uninitialised column: 'locationx'.
+
+``` r
+X100to105v1$locationy[X100to105v1$"國籍" == c("南非")] <- "-30.909670"
+X100to105v1$locationx[X100to105v1$"國籍" == c("南非")] <- "24.259127"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("加拿大")] <- "59.997026"
+X100to105v1$locationx[X100to105v1$"國籍" == c("加拿大")] <- "-112.402012"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("緬甸")] <- "21.415178"
+X100to105v1$locationx[X100to105v1$"國籍" == c("緬甸")] <- "96.396717"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("印尼")] <- "-4.381767"
+X100to105v1$locationx[X100to105v1$"國籍" == c("印尼")] <- "122.293216"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("日本")] <- "36.552849"
+X100to105v1$locationx[X100to105v1$"國籍" == c("日本")] <- "138.307262"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("菲律賓")] <- "14.598987"
+X100to105v1$locationx[X100to105v1$"國籍" == c("菲律賓")] <- "120.983238"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("新加坡")] <- "1.360033"
+X100to105v1$locationx[X100to105v1$"國籍" == c("新加坡")] <- "103.868979"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("泰國")] <- "13.748660"
+X100to105v1$locationx[X100to105v1$"國籍" == c("泰國")] <- "100.492952"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("英國")] <- "54.938086"
+X100to105v1$locationx[X100to105v1$"國籍" == c("英國")] <- "-2.867684"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("美國")] <- "39.739020"
+X100to105v1$locationx[X100to105v1$"國籍" == c("美國")] <- "-101.620433"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("阿根廷")] <- "-35.388441"
+X100to105v1$locationx[X100to105v1$"國籍" == c("阿根廷")] <- "-65.392241"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("南韓")] <- "37.592579"
+X100to105v1$locationx[X100to105v1$"國籍" == c("南韓")] <- "126.975279"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("紐西蘭")] <- "-41.299974"
+X100to105v1$locationx[X100to105v1$"國籍" == c("紐西蘭")] <- "174.776852"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("墨西哥")] <- "24.129376"
+X100to105v1$locationx[X100to105v1$"國籍" == c("墨西哥")] <- "-102.917429"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("巴西")] <- "-8.884431"
+X100to105v1$locationx[X100to105v1$"國籍" == c("巴西")] <- "-55.488347"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("巴拉圭")] <- "-23.269402"
+X100to105v1$locationx[X100to105v1$"國籍" == c("巴拉圭")] <- "-58.462776"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("越南")] <- "14.484540"
+X100to105v1$locationx[X100to105v1$"國籍" == c("越南")] <- "108.360975"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("肯亞")] <- "0.418065"
+X100to105v1$locationx[X100to105v1$"國籍" == c("肯亞")] <- "37.868307"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("西班牙")] <- "39.690189"
+X100to105v1$locationx[X100to105v1$"國籍" == c("西班牙")] <- "-3.132226"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("尼加拉瓜")] <- "12.891754"
+X100to105v1$locationx[X100to105v1$"國籍" == c("尼加拉瓜")] <- "-85.188938"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("巴拿馬")] <- "8.484368"
+X100to105v1$locationx[X100to105v1$"國籍" == c("巴拿馬")] <- "-80.109248"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("澳大利亞")] <- "-24.551857"
+X100to105v1$locationx[X100to105v1$"國籍" == c("澳大利亞")] <- "134.182865"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("貝里斯")] <- "16.77919"
+X100to105v1$locationx[X100to105v1$"國籍" == c("貝里斯")] <- "-88.737792"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("智利")] <- "-26.554819"
+X100to105v1$locationx[X100to105v1$"國籍" == c("智利")] <- "-70.418818"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("薩爾瓦多")] <- "13.784449"
+X100to105v1$locationx[X100to105v1$"國籍" == c("薩爾瓦多")] <- "-89.230311"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("哥斯大黎加")] <- "9.948630"
+X100to105v1$locationx[X100to105v1$"國籍" == c("哥斯大黎加")] <- "-84.117774"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("法國")] <- "46.410759"
+X100to105v1$locationx[X100to105v1$"國籍" == c("法國")] <- "2.716875"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("阿拉伯聯合大公國")] <- "23.681736"
+X100to105v1$locationx[X100to105v1$"國籍" == c("阿拉伯聯合大公國")] <- "54.002147"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("葉門")] <- "15.846800"
+X100to105v1$locationx[X100to105v1$"國籍" == c("葉門")] <- "47.850653"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("俄羅斯")] <- "62.240122"
+X100to105v1$locationx[X100to105v1$"國籍" == c("俄羅斯")] <- "93.834839"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("斐濟")] <- "-17.847725"
+X100to105v1$locationx[X100to105v1$"國籍" == c("斐濟")] <- "178.013273"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("厄瓜多")] <- "-1.418160"
+X100to105v1$locationx[X100to105v1$"國籍" == c("厄瓜多")] <- "-78.294611"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("埃及")] <- "26.528769"
+X100to105v1$locationx[X100to105v1$"國籍" == c("埃及")] <- "29.858624"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("巴布亞紐幾內亞")] <- "-6.441940"
+X100to105v1$locationx[X100to105v1$"國籍" == c("巴布亞紐幾內亞")] <- "144.595518"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("巴基斯坦")] <- "30.082631"
+X100to105v1$locationx[X100to105v1$"國籍" == c("巴基斯坦")] <- "69.294945"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("巴林")] <- "26.038782"
+X100to105v1$locationx[X100to105v1$"國籍" == c("巴林")] <- "50.552011"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("比利時")] <- "50.906237"
+X100to105v1$locationx[X100to105v1$"國籍" == c("比利時")] <- "4.338898"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("玻利維亞")] <- "-16.597679"
+X100to105v1$locationx[X100to105v1$"國籍" == c("玻利維亞")] <- "-64.640097"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("帛琉")] <- "7.517417"
+X100to105v1$locationx[X100to105v1$"國籍" == c("帛琉")] <- "134.572796"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("德國")] <- "51.064427"
+X100to105v1$locationx[X100to105v1$"國籍" == c("德國")] <- "10.492793"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("多米尼克")] <- "15.430178"
+X100to105v1$locationx[X100to105v1$"國籍" == c("多米尼克")] <- "-61.360056"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("柬埔寨")] <- "12.678917"
+X100to105v1$locationx[X100to105v1$"國籍" == c("柬埔寨")] <- "104.855949"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("科威特")] <- "29.323762"
+X100to105v1$locationx[X100to105v1$"國籍" == c("科威特")] <- "47.414698"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("黎巴嫩")] <- "34.114424"
+X100to105v1$locationx[X100to105v1$"國籍" == c("黎巴嫩")] <- "35.884993"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("寮國")] <- "19.526376"
+X100to105v1$locationx[X100to105v1$"國籍" == c("寮國")] <- "102.532372"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("馬拉威")] <- "-14.020457"
+X100to105v1$locationx[X100to105v1$"國籍" == c("馬拉威")] <- "33.839299"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("孟加拉")] <- "23.739765"
+X100to105v1$locationx[X100to105v1$"國籍" == c("孟加拉")] <- "90.428802"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("模里西斯")] <- "-20.158133"
+X100to105v1$locationx[X100to105v1$"國籍" == c("模里西斯")] <- "57.503020"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("秘魯")] <- "-10.770646"
+X100to105v1$locationx[X100to105v1$"國籍" == c("秘魯")] <- "-76.089076"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("瑞典")] <- "64.496659"
+X100to105v1$locationx[X100to105v1$"國籍" == c("瑞典")] <- "17.217521"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("瑞士")] <- "46.783748"
+X100to105v1$locationx[X100to105v1$"國籍" == c("瑞士")] <- "7.925473"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("沙烏地阿拉伯")] <- "23.899594"
+X100to105v1$locationx[X100to105v1$"國籍" == c("沙烏地阿拉伯")] <- "45.433590"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("斯里蘭卡")] <- "7.588220"
+X100to105v1$locationx[X100to105v1$"國籍" == c("斯里蘭卡")] <- "80.696452"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("泰國")] <- "13.741785"
+X100to105v1$locationx[X100to105v1$"國籍" == c("泰國")] <- "100.499849"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("委內瑞拉")] <- "7.073115"
+X100to105v1$locationx[X100to105v1$"國籍" == c("委內瑞拉")] <- "-66.610604"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("汶萊")] <- "4.540462"
+X100to105v1$locationx[X100to105v1$"國籍" == c("汶萊")] <- "114.639758"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("象牙海岸")] <- "7.643046"
+X100to105v1$locationx[X100to105v1$"國籍" == c("象牙海岸")] <- "5.353685"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("匈牙利")] <- "47.012069"
+X100to105v1$locationx[X100to105v1$"國籍" == c("匈牙利")] <- "19.624482"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("義大利")] <- "42.935020"
+X100to105v1$locationx[X100to105v1$"國籍" == c("義大利")] <- "12.410020"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("印度")] <- "22.683064"
+X100to105v1$locationx[X100to105v1$"國籍" == c("印度")] <- "79.031203"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("約旦")] <- "31.279142"
+X100to105v1$locationx[X100to105v1$"國籍" == c("約旦")] <- "36.756995"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("史瓦濟蘭")] <- "-26.577159"
+X100to105v1$locationx[X100to105v1$"國籍" == c("史瓦濟蘭")] <- "31.451034"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("多明尼加")] <- "18.910874"
+X100to105v1$locationx[X100to105v1$"國籍" == c("多明尼加")] <- "-70.193544"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("納米比亞")] <- "-22.325959"
+X100to105v1$locationx[X100to105v1$"國籍" == c("納米比亞")] <- "16.942383"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("荷蘭")] <- "52.356997"
+X100to105v1$locationx[X100to105v1$"國籍" == c("荷蘭")] <- "4.894108"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("宏都拉斯")] <- "14.058685"
+X100to105v1$locationx[X100to105v1$"國籍" == c("宏都拉斯")] <- "-87.201599"
+
+X100to105v1$locationy[X100to105v1$"國籍" == c("瓜地馬拉")] <- "14.642601"
+X100to105v1$locationx[X100to105v1$"國籍" == c("瓜地馬拉")] <- "-90.498682"
+
+X100to105v1$"地區"[X100to105v1$"國籍" == c("美國")] <- "北美洲"
+X100to105v1$"地區"[X100to105v1$"國籍" == c("加拿大")] <- "北美洲"
+X100to105v1$"地區"[X100to105v1$"國籍" == c("巴西")] <- "南美洲"
+X100to105v1$"地區"[X100to105v1$"國籍" == c("墨西哥")] <- "南美洲"
+X100to105v1$"地區"[X100to105v1$"國籍" == c("阿根廷")] <- "南美洲"
+
+asiavisitordata<-X100to105v1[grepl("亞洲",X100to105v1$"地區"),]
+eurovisitordata<-X100to105v1[grepl("歐洲",X100to105v1$"地區"),]
+SAfricavisitordata<-X100to105v1[grepl("非洲",X100to105v1$"地區"),]
+Oceaniavisitordata<-X100to105v1[grepl("大洋洲",X100to105v1$"地區"),]
+NAvisitorvisitordata<-X100to105v1[grepl("北美洲",X100to105v1$"地區"),]
+SAvisitordata<-X100to105v1[grepl("南美洲",X100to105v1$"地區"),]
 
 #X104oversea_B1_1a清洗
 names(X104oversea_B1_1a)[2] <-"school"
@@ -1060,6 +1295,7 @@ library(choroplethr)
 ``` r
 library(ggmap)
 
+#Student Map
 WorldMap <- ggmap(get_googlemap(center=c(0,0),
                     zoom=1, scale=1, filename="world", size=c(550,250)))
 ```
@@ -1203,6 +1439,10 @@ SAMapO
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-3-7.png)
+
+``` r
+#Visitor Map
+```
 
 期末專題分析規劃
 ----------------
