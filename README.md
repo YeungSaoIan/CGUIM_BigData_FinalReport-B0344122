@@ -449,6 +449,242 @@ library(dplyr)
 #各國僑生在學人數
 overseastudentcountanalyze <- summarise(group_by(X104oversea_B1_1a,country),count = sum(studentcount)) 
 
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("馬來西亞")] <- "3.137956"
+```
+
+    ## Warning: Unknown or uninitialised column: 'locationy'.
+
+``` r
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("馬來西亞")] <- "101.687132"
+```
+
+    ## Warning: Unknown or uninitialised column: 'locationx'.
+
+``` r
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("南非")] <- "-30.909670"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("南非")] <- "24.259127"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("加拿大")] <- "59.997026"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("加拿大")] <- "-112.402012"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("緬甸")] <- "21.415178"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("緬甸")] <- "96.396717"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("印尼")] <- "-4.381767"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("印尼")] <- "122.293216"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("日本")] <- "36.552849"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("日本")] <- "138.307262"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("菲律賓")] <- "14.598987"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("菲律賓")] <- "120.983238"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("新加坡")] <- "1.360033"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("新加坡")] <- "103.868979"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("泰國")] <- "13.748660"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("泰國")] <- "100.492952"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("英國")] <- "54.938086"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("英國")] <- "-2.867684"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("美國")] <- "39.739020"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("美國")] <- "-101.620433"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("阿根廷")] <- "-35.388441"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("阿根廷")] <- "-65.392241"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("南韓")] <- "37.592579"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("南韓")] <- "126.975279"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("紐西蘭")] <- "-41.299974"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("紐西蘭")] <- "174.776852"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("墨西哥")] <- "24.129376"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("墨西哥")] <- "-102.917429"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("巴西")] <- "-8.884431"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("巴西")] <- "-55.488347"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("巴拉圭")] <- "-23.269402"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("巴拉圭")] <- "-58.462776"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("越南")] <- "14.484540"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("越南")] <- "108.360975"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("肯亞")] <- "0.418065"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("肯亞")] <- "37.868307"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("西班牙")] <- "39.690189"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("西班牙")] <- "-3.132226"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("尼加拉瓜")] <- "12.891754"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("尼加拉瓜")] <- "-85.188938"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("巴拿馬")] <- "8.484368"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("巴拿馬")] <- "-80.109248"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("澳大利亞")] <- "-24.551857"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("澳大利亞")] <- "134.182865"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("貝里斯")] <- "16.77919"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("貝里斯")] <- "-88.737792"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("智利")] <- "-26.554819"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("智利")] <- "-70.418818"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("薩爾瓦多")] <- "13.784449"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("薩爾瓦多")] <- "-89.230311"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("哥斯大黎加")] <- "9.948630"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("哥斯大黎加")] <- "-84.117774"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("法國")] <- "46.410759"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("法國")] <- "2.716875"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("阿拉伯聯合大公國")] <- "23.681736"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("阿拉伯聯合大公國")] <- "54.002147"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("葉門")] <- "15.846800"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("葉門")] <- "47.850653"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("俄羅斯")] <- "62.240122"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("俄羅斯")] <- "93.834839"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("斐濟")] <- "-17.847725"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("斐濟")] <- "178.013273"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("厄瓜多")] <- "-1.418160"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("厄瓜多")] <- "-78.294611"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("埃及")] <- "26.528769"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("埃及")] <- "29.858624"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("巴布亞紐幾內亞")] <- "-6.441940"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("巴布亞紐幾內亞")] <- "144.595518"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("巴基斯坦")] <- "30.082631"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("巴基斯坦")] <- "69.294945"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("巴林")] <- "26.038782"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("巴林")] <- "50.552011"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("比利時")] <- "50.906237"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("比利時")] <- "4.338898"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("玻利維亞")] <- "-16.597679"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("玻利維亞")] <- "-64.640097"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("帛琉")] <- "7.517417"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("帛琉")] <- "134.572796"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("德國")] <- "51.064427"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("德國")] <- "10.492793"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("多米尼克")] <- "15.430178"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("多米尼克")] <- "-61.360056"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("柬埔寨")] <- "12.678917"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("柬埔寨")] <- "104.855949"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("科威特")] <- "29.323762"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("科威特")] <- "47.414698"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("黎巴嫩")] <- "34.114424"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("黎巴嫩")] <- "35.884993"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("寮國")] <- "19.526376"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("寮國")] <- "102.532372"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("馬拉威")] <- "-14.020457"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("馬拉威")] <- "33.839299"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("孟加拉")] <- "23.739765"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("孟加拉")] <- "90.428802"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("模里西斯")] <- "-20.158133"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("模里西斯")] <- "57.503020"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("秘魯")] <- "-10.770646"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("秘魯")] <- "-76.089076"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("瑞典")] <- "64.496659"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("瑞典")] <- "17.217521"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("瑞士")] <- "46.783748"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("瑞士")] <- "7.925473"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("沙烏地阿拉伯")] <- "23.899594"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("沙烏地阿拉伯")] <- "45.433590"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("斯里蘭卡")] <- "7.588220"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("斯里蘭卡")] <- "80.696452"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("泰國")] <- "13.741785"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("泰國")] <- "100.499849"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("委內瑞拉")] <- "7.073115"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("委內瑞拉")] <- "-66.610604"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("汶萊")] <- "4.540462"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("汶萊")] <- "114.639758"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("象牙海岸")] <- "7.643046"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("象牙海岸")] <- "5.353685"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("匈牙利")] <- "47.012069"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("匈牙利")] <- "19.624482"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("義大利")] <- "42.935020"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("義大利")] <- "12.410020"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("印度")] <- "22.683064"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("印度")] <- "79.031203"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("約旦")] <- "31.279142"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("約旦")] <- "36.756995"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("史瓦濟蘭")] <- "-26.577159"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("史瓦濟蘭")] <- "31.451034"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("多明尼加")] <- "18.910874"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("多明尼加")] <- "-70.193544"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("納米比亞")] <- "-22.325959"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("納米比亞")] <- "16.942383"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("荷蘭")] <- "52.356997"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("荷蘭")] <- "4.894108"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("宏都拉斯")] <- "14.058685"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("宏都拉斯")] <- "-87.201599"
+
+overseastudentcountanalyze$locationy[overseastudentcountanalyze$"country" == c("瓜地馬拉")] <- "14.642601"
+overseastudentcountanalyze$locationx[overseastudentcountanalyze$"country" == c("瓜地馬拉")] <- "-90.498682"
+
+overseastudentcountanalyze$type[overseastudentcountanalyze$"country" %in% c("菲律賓","汶萊","泰國","孟加拉","斯里蘭卡","沙烏地阿拉伯","馬來西亞","緬甸","印尼","日本","新加坡","南韓","越南","阿拉伯聯合大公國","寮國","柬埔寨","巴基斯坦","巴林","印度","黎巴嫩","約旦","葉門","科威特")] <- "亞洲"
+```
+
+    ## Warning: Unknown or uninitialised column: 'type'.
+
+``` r
+overseastudentcountanalyze$type[overseastudentcountanalyze$"country" %in% c("美國","加拿大","墨西哥","古巴","多明尼加","多米尼克","薩爾瓦多","尼加拉瓜","瓜地馬拉","貝里斯","巴拿馬","哥斯大黎加")] <- "北美洲"
+
+overseastudentcountanalyze$type[overseastudentcountanalyze$"country" %in% c("厄瓜多","巴西","烏拉圭","巴拉圭","秘魯","智利","阿根廷","玻利維亞","哥倫比亞","委內瑞拉","宏都拉斯")] <- "南美洲"
+
+overseastudentcountanalyze$type[overseastudentcountanalyze$"country" %in% c("荷蘭","英國","西班牙","比利時","俄羅斯","德國","匈牙利","瑞典","法國","義大利","瑞士")] <- "歐洲"
+
+overseastudentcountanalyze$type[overseastudentcountanalyze$"country" %in% c("埃及","肯亞","南非","象牙海岸","納米比亞","馬拉威","馬拉威","模里西斯","史瓦濟蘭")] <- "非洲"
+
+overseastudentcountanalyze$type[overseastudentcountanalyze$"country" %in% c("澳大利亞","帛琉","斐濟","巴布亞紐幾內亞","紐西蘭","薩摩亞")] <- "大洋洲"
+
+asiadata<-overseastudentcountanalyze[grepl("亞洲",overseastudentcountanalyze$"type"),]
+eurodata<-overseastudentcountanalyze[grepl("歐洲",overseastudentcountanalyze$"type"),]
+SAfricadata<-overseastudentcountanalyze[grepl("非洲",overseastudentcountanalyze$"type"),]
+Oceaniadata<-overseastudentcountanalyze[grepl("大洋洲",overseastudentcountanalyze$"type"),]
+NAdata<-overseastudentcountanalyze[grepl("北美洲",overseastudentcountanalyze$"type"),]
+SAdata<-overseastudentcountanalyze[grepl("南美洲",overseastudentcountanalyze$"type"),]
+
 ##僑居地前十名及人數
 overseastudentcountresult <- head(overseastudentcountanalyze[order(overseastudentcountanalyze$count,decreasing = T),],10)
 knitr::kable(
@@ -456,18 +692,18 @@ overseastudentcountresult
 )
 ```
 
-| country  |  count|
-|:---------|------:|
-| 馬來西亞 |   7013|
-| 印尼     |   1100|
-| 緬甸     |    451|
-| 越南     |    306|
-| 泰國     |    259|
-| 美國     |    251|
-| 南韓     |    187|
-| 加拿大   |    179|
-| 日本     |    174|
-| 新加坡   |     88|
+| country  |  count| locationy | locationx   | type   |
+|:---------|------:|:----------|:------------|:-------|
+| 馬來西亞 |   7013| 3.137956  | 101.687132  | 亞洲   |
+| 印尼     |   1100| -4.381767 | 122.293216  | 亞洲   |
+| 緬甸     |    451| 21.415178 | 96.396717   | 亞洲   |
+| 越南     |    306| 14.484540 | 108.360975  | 亞洲   |
+| 泰國     |    259| 13.741785 | 100.499849  | 亞洲   |
+| 美國     |    251| 39.739020 | -101.620433 | 北美洲 |
+| 南韓     |    187| 37.592579 | 126.975279  | 亞洲   |
+| 加拿大   |    179| 59.997026 | -112.402012 | 北美洲 |
+| 日本     |    174| 36.552849 | 138.307262  | 亞洲   |
+| 新加坡   |     88| 1.360033  | 103.868979  | 亞洲   |
 
 ``` r
 library(ggplot2)
@@ -510,28 +746,28 @@ presentofoversea104chart
 
 ``` r
 presentofoversea104L$"比例(%)" <- (as.numeric(presentofoversea104L$values)/sum(as.numeric(presentofoversea104L$values)))*100
-names(presentofoversea104L)[1] <-"學校類型"
-names(presentofoversea104L)[2] <-"總計人數"
-os104summary <- data.frame(presentofoversea104L)
+names(presentofoversea104L)[1] <-"總計人數"
+names(presentofoversea104L)[2] <-"類型"
+schooltype <- c("公私立大學","國防醫學院","僑生先修部","專科學校","高國中","職業學校","國小","各級補校","海青班")
+presentofoversea104L$"學校類型" <-schooltype
+os104summary <- data.frame(presentofoversea104L$"學校類型",presentofoversea104L$"總計人數",presentofoversea104L$"比例(%)")
+names(os104summary)[1] <-"學校類型"
+names(os104summary)[2] <-"總計人數"
+names(os104summary)[3] <-"比例(%)"
 knitr::kable(os104summary)
 ```
 
-| 學校類型 | 總計人數   |   比例...  |
-|:---------|:-----------|:----------:|
-| 21802    | 公私立大學 | 84.0348443 |
-| 88       | 國防       |            |
-| 醫學院   | 0.3391921  |            |
-| 990      | 僑　生     |            |
-| 先修部   | 3.8159112  |            |
-| 58       | 專科       |            |
-| 學校     | 0.2235584  |            |
-| 642      | 高國中     |  2.4745606 |
-| 779      | 職業       |            |
-| 學校     | 3.0026210  |            |
-| 400      | 國小       |  1.5417823 |
-| 6        | 各級       |            |
-| 補校     | 0.0231267  |            |
-| 1179     | 海青班     |  4.5444033 |
+| 學校類型   | 總計人數 |   比例(%)  |
+|:-----------|:---------|:----------:|
+| 公私立大學 | 21802    | 84.0348443 |
+| 國防醫學院 | 88       |  0.3391921 |
+| 僑生先修部 | 990      |  3.8159112 |
+| 專科學校   | 58       |  0.2235584 |
+| 高國中     | 642      |  2.4745606 |
+| 職業學校   | 779      |  3.0026210 |
+| 國小       | 400      |  1.5417823 |
+| 各級補校   | 6        |  0.0231267 |
+| 海青班     | 1179     |  4.5444033 |
 
 ``` r
 #僑生入讀台灣大專學校情況
@@ -547,6 +783,18 @@ osstudent101to105rate <- c(student101rate,student102rate,student103rate,student1
 statyear <- c("101","102","103","104","105")
 overseastudentrate <- data.frame(statyear,osstudent101to105rate)
 
+knitr::kable(overseastudentrate)
+```
+
+| statyear |  osstudent101to105rate|
+|:---------|----------------------:|
+| 101      |                   7127|
+| 102      |                   7768|
+| 103      |                   8791|
+| 104      |                   9717|
+| 105      |                  10430|
+
+``` r
 ggplot(overseastudentrate, aes(x=statyear, y=osstudent101to105rate, group = 1)) + geom_line()
 ```
 
@@ -692,19 +940,42 @@ names(testcgu)[11] <-"僑生_女"
 names(testcgu)[12] <-"港澳生人數"
 names(testcgu)[13] <-"港澳生_男"
 names(testcgu)[14] <-"港澳生_女"
+
+cgucount <- as.numeric(testcgu$"僑生人數")+as.numeric(testcgu$"港澳生人數")
+testcgu$count <- as.numeric(testcgu$"僑生人數")+as.numeric(testcgu$"港澳生人數")
+
+testcguL <- data.frame(testcgu$"系所",testcgu$count)
+names(testcguL)[1] <-"Major"
+
+testcguchart <- ggplot(data=testcguL) +
+geom_bar(aes(x=factor(1),
+                 y=testcgu.count,
+                 fill=Major),
+             stat = "identity"
+             ) + coord_polar("y", start=0)
+testcguchart
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-2-5.png)
+
+``` r
 knitr::kable(
-  head(testcgu)
+  head(testcguL[order(testcguL$testcgu.count,decreasing = T),],10)
 )
 ```
 
-| 學年 | 設立別 | 學校類別 | 學校代碼 | 學校名稱 | 系所代碼 | 系所           | 學制         | 僑生人數 | 僑生\_男 | 僑生\_女 | 港澳生人數 | 港澳生\_男 | 港澳生\_女 |
-|:-----|:-------|:---------|:---------|:---------|:---------|:---------------|:-------------|:---------|:---------|:---------|:-----------|:-----------|:-----------|
-| 105  | 私立   | 一般大學 | 1009     | 長庚大學 | 230303   | 工業設計學系   | 學士班(日間) | 0        | 0        | 0        | 1          | 0          | 1          |
-| 105  | 私立   | 一般大學 | 1009     | 長庚大學 | 340302   | 工商管理學系   | 學士班(日間) | 2        | 1        | 1        | 3          | 3          | 0          |
-| 105  | 私立   | 一般大學 | 1009     | 長庚大學 | 340901   | 醫務管理學系   | 學士班(日間) | 2        | 1        | 1        | 6          | 1          | 5          |
-| 105  | 私立   | 一般大學 | 1009     | 長庚大學 | 420503   | 生物醫學系     | 學士班(日間) | 8        | 3        | 5        | 5          | 2          | 3          |
-| 105  | 私立   | 一般大學 | 1009     | 長庚大學 | 420503   | 生物醫學研究所 | 碩士班(日間) | 1        | 1        | 0        | 0          | 0          | 0          |
-| 105  | 私立   | 一般大學 | 1009     | 長庚大學 | 420503   | 生物醫學研究所 | 博士班       | 1        | 1        | 0        | 0          | 0          | 0          |
+|     | Major                  |  testcgu.count|
+|-----|:-----------------------|--------------:|
+| 13  | 醫學系                 |             39|
+| 22  | 醫學生物技術暨檢驗學系 |             16|
+| 4   | 生物醫學系             |             13|
+| 15  | 中醫學系               |             10|
+| 20  | 護理學系               |             10|
+| 24  | 醫學影像暨放射科學系   |             10|
+| 3   | 醫務管理學系           |              8|
+| 17  | 物理治療學系           |              7|
+| 2   | 工商管理學系           |              5|
+| 10  | 機械工程學系           |              5|
 
 ``` r
 ##長庚大學資管系僑生現況
@@ -728,9 +999,9 @@ knitr::kable(
 )
 ```
 
-| 學年 | 設立別 | 學校類別 | 學校代碼 | 學校名稱 | 系所代碼 | 系所         | 學制         | 僑生人數 | 僑生\_男 | 僑生\_女 | 港澳生人數 | 港澳生\_男 | 港澳生\_女 |
-|:-----|:-------|:---------|:---------|:---------|:---------|:-------------|:-------------|:---------|:---------|:---------|:-----------|:-----------|:-----------|
-| 105  | 私立   | 一般大學 | 1009     | 長庚大學 | 480109   | 資訊管理學系 | 學士班(日間) | 0        | 0        | 0        | 2          | 1          | 1          |
+| 學年 | 設立別 | 學校類別 | 學校代碼 | 學校名稱 | 系所代碼 | 系所         | 學制         | 僑生人數 | 僑生\_男 | 僑生\_女 | 港澳生人數 | 港澳生\_男 | 港澳生\_女 |  count|
+|:-----|:-------|:---------|:---------|:---------|:---------|:-------------|:-------------|:---------|:---------|:---------|:-----------|:-----------|:-----------|------:|
+| 105  | 私立   | 一般大學 | 1009     | 長庚大學 | 480109   | 資訊管理學系 | 學士班(日間) | 0        | 0        | 0        | 2          | 1          | 1          |      2|
 
 資料分析
 --------
@@ -789,6 +1060,25 @@ library(choroplethr)
 ``` r
 library(ggmap)
 
+WorldMap <- ggmap(get_googlemap(center=c(0,0),
+                    zoom=1, scale=1, filename="world", size=c(550,250)))
+```
+
+    ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=0,0&zoom=1&size=550x250&scale=1&maptype=terrain&sensor=false
+
+``` r
+WorldMapO <- WorldMap + geom_point(data=overseastudentcountanalyze, 
+               aes(x=as.numeric(locationx), y=as.numeric(locationy),
+                   color=as.numeric(count),size=1))+ 
+    scale_color_continuous(
+        low = "yellow",high = "red")+ 
+    guides(size=FALSE)
+WorldMapO
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)
+
+``` r
 AsiaMap <- get_map(location = "Asia", zoom = 3, maptype = 'satellite',language = "zh-TW")
 ```
 
@@ -799,16 +1089,16 @@ AsiaMap <- get_map(location = "Asia", zoom = 3, maptype = 'satellite',language =
 ``` r
 AsiaMapO <- ggmap(AsiaMap)+ geom_point(data=asiadata, 
                aes(x=as.numeric(locationx), y=as.numeric(locationy),
-                   color=as.numeric(studentcount),size=3.5))+ 
+                   color=as.numeric(count),size=3.5))+ 
     scale_color_continuous(
         low = "yellow",high = "red")+ 
     guides(size=FALSE)
 AsiaMapO
 ```
 
-    ## Warning: Removed 4 rows containing missing values (geom_point).
+    ## Warning: Removed 2 rows containing missing values (geom_point).
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-3-2.png)
 
 ``` r
 EuroMap <- get_map(location = "Europe", zoom = 3, maptype = 'satellite')
@@ -821,7 +1111,7 @@ EuroMap <- get_map(location = "Europe", zoom = 3, maptype = 'satellite')
 ``` r
 EuroMapO <- ggmap(EuroMap)+ geom_point(data=eurodata, 
                aes(x=as.numeric(locationx), y=as.numeric(locationy),
-                   color=as.numeric(studentcount),size=3.5))+ 
+                   color=as.numeric(count),size=3.5))+ 
     scale_color_continuous(
         low = "yellow",high = "red")+ 
     guides(size=FALSE)
@@ -830,7 +1120,7 @@ EuroMapO
 
     ## Warning: Removed 1 rows containing missing values (geom_point).
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-2.png)
+![](README_files/figure-markdown_github/unnamed-chunk-3-3.png)
 
 ``` r
 OceaniaMap <- get_map(location = "Oceania", zoom = 3, maptype = 'satellite')
@@ -843,14 +1133,14 @@ OceaniaMap <- get_map(location = "Oceania", zoom = 3, maptype = 'satellite')
 ``` r
 OceaniaMapO <- ggmap(OceaniaMap)+ geom_point(data=Oceaniadata, 
                aes(x=as.numeric(locationx), y=as.numeric(locationy),
-                   color=as.numeric(studentcount),size=3.5))+ 
+                   color=as.numeric(count),size=3.5))+ 
     scale_color_continuous(
         low = "yellow",high = "red")+ 
     guides(size=FALSE)
 OceaniaMapO
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-3.png)
+![](README_files/figure-markdown_github/unnamed-chunk-3-4.png)
 
 ``` r
 AfricaMap <- get_map(location = "Africa", zoom = 3, maptype = 'satellite')
@@ -863,14 +1153,14 @@ AfricaMap <- get_map(location = "Africa", zoom = 3, maptype = 'satellite')
 ``` r
 AfricaMapO <- ggmap(AfricaMap)+ geom_point(data=SAfricadata, 
                aes(x=as.numeric(locationx), y=as.numeric(locationy),
-                   color=as.numeric(studentcount),size=3.5))+ 
+                   color=as.numeric(count),size=3.5))+ 
     scale_color_continuous(
         low = "yellow",high = "red")+ 
     guides(size=FALSE)
 AfricaMapO
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-4.png)
+![](README_files/figure-markdown_github/unnamed-chunk-3-5.png)
 
 ``` r
 NAMap <- get_map(location = "North America", zoom = 3, maptype = 'satellite')
@@ -883,16 +1173,16 @@ NAMap <- get_map(location = "North America", zoom = 3, maptype = 'satellite')
 ``` r
 NAMapO <- ggmap(NAMap)+ geom_point(data=NAdata, 
                aes(x=as.numeric(locationx), y=as.numeric(locationy),
-                   color=as.numeric(studentcount),size=3.5))+ 
+                   color=as.numeric(count),size=3.5))+ 
     scale_color_continuous(
         low = "yellow",high = "red")+ 
     guides(size=FALSE)
 NAMapO
 ```
 
-    ## Warning: Removed 4 rows containing missing values (geom_point).
+    ## Warning: Removed 1 rows containing missing values (geom_point).
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-5.png)
+![](README_files/figure-markdown_github/unnamed-chunk-3-6.png)
 
 ``` r
 SAMap <- get_map(location = "South America", zoom = 3, maptype = 'satellite')
@@ -905,14 +1195,14 @@ SAMap <- get_map(location = "South America", zoom = 3, maptype = 'satellite')
 ``` r
 SAMapO <- ggmap(SAMap)+ geom_point(data=SAdata, 
                aes(x=as.numeric(locationx), y=as.numeric(locationy),
-                   color=as.numeric(studentcount),size=3.5))+ 
+                   color=as.numeric(count),size=3.5))+ 
     scale_color_continuous(
         low = "yellow",high = "red")+ 
     guides(size=FALSE)
 SAMapO
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-6.png)
+![](README_files/figure-markdown_github/unnamed-chunk-3-7.png)
 
 期末專題分析規劃
 ----------------
