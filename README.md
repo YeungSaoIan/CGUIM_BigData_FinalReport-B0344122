@@ -16,14 +16,13 @@
 
 作為外國長大的僑生的一分子，藉著這個機會了解「同是天涯淪落人」的留台外國人的在台灣甚至在長庚的狀況。
 
+在台灣，僑生是……
+----------------
+
+指海外出生連續居留迄今，或最近連續居留海外六年以上，並取得僑居地永久或長期居留證件回國就學之華裔學生。但就讀大學醫學、牙醫及中醫學系者，其連續居留年限為八年以上。僑生身分認定，由僑務主管機關為之……前條第一項所稱海外，指大陸地區、香港及澳門以外之國家或地區。
+
 使用資料
 --------
-
-File\_1940是各級學校僑生資料 visitorstatictis1是自1956年以來來台旅客人數及國藉資料 Student\_RPT\_05是現時台灣各大專院校外藉學生資料包括人數國藉科系學制等資料
-
-\*還有一份是"大專校院僑生及畢業生人數—按性別、校別與僑居地別分"資料，但資料尚有一些問題，所以尚未載入，但是連同作業一同commit
-
-載入使用資料們
 
 ``` r
 #這是R Code Chunk
@@ -136,19 +135,26 @@ library(readxl)
 
 ``` r
 X100to105v1 <- read_excel("C:/CGUIM_BigData_FinalReport-B0344122/100to105v1.xlsx")
+```
 
-## 資料處理與清洗
+資料處理與清洗
+--------------
 
-#資料清洗
+File\_1940清洗
+==============
 
-#File_1940清洗
+``` r
 names(File_1940)[1] <-"學年度"
 names(File_1940)[2] <-"總計"
 names(File_1940)[3] <-"計"
 names(File_1940)[4] <-"公私立大學"
 File_1940 <- File_1940[-1,]
+```
 
-#visitorstatictis1清洗
+visitorstatictis1清洗
+=====================
+
+``` r
 visitorstatictis1 <- visitorstatictis1[-1,]
 visitorstatictis1 <- visitorstatictis1[-1,]
 names(visitorstatictis1)[1] <-"year"
@@ -161,8 +167,12 @@ names(visitorstatictis1)[7] <-"外籍旅客指數"
 names(visitorstatictis1)[8] <-"華僑旅客人數"
 names(visitorstatictis1)[9] <-"華僑旅客成長率"
 names(visitorstatictis1)[10] <-"華僑旅客指數"
+```
 
-#Student_RPT_05清洗
+Student\_RPT\_05清洗
+====================
+
+``` r
 Student_RPT_05$X1 <- NULL
 Student_RPT_05 <- Student_RPT_05[-1,]
 Student_RPT_05 <- Student_RPT_05[-1,]
@@ -187,8 +197,12 @@ student102data<-Student_RPT_05[grepl("102",Student_RPT_05$"year"),]
 student103data<-Student_RPT_05[grepl("103",Student_RPT_05$"year"),]
 student104data<-Student_RPT_05[grepl("104",Student_RPT_05$"year"),]
 student105data<-Student_RPT_05[grepl("105",Student_RPT_05$"year"),]
+```
 
-#X100to105v1清洗
+X100to105v1清洗
+===============
+
+``` r
 X100to105v1$locationy[X100to105v1$"國籍" == c("馬來西亞")] <- "3.137956"
 ```
 
@@ -416,8 +430,12 @@ SAfricavisitordata<-X100to105v1[grepl("非洲",X100to105v1$"地區"),]
 Oceaniavisitordata<-X100to105v1[grepl("大洋洲",X100to105v1$"地區"),]
 NAvisitorvisitordata<-X100to105v1[grepl("北美洲",X100to105v1$"地區"),]
 SAvisitordata<-X100to105v1[grepl("南美洲",X100to105v1$"地區"),]
+```
 
-#X104oversea_B1_1a清洗
+X104oversea\_B1\_1a清洗
+=======================
+
+``` r
 names(X104oversea_B1_1a)[2] <-"school"
 names(X104oversea_B1_1a)[4] <-"country"
 X104oversea_B1_1a$locationy[X104oversea_B1_1a$"country" == c("馬來西亞")] <- "3.137956"
@@ -921,26 +939,10 @@ SAfricadata<-overseastudentcountanalyze[grepl("非洲",overseastudentcountanalyz
 Oceaniadata<-overseastudentcountanalyze[grepl("大洋洲",overseastudentcountanalyze$"type"),]
 NAdata<-overseastudentcountanalyze[grepl("北美洲",overseastudentcountanalyze$"type"),]
 SAdata<-overseastudentcountanalyze[grepl("南美洲",overseastudentcountanalyze$"type"),]
-
-##僑居地前十名及人數
-overseastudentcountresult <- head(overseastudentcountanalyze[order(overseastudentcountanalyze$count,decreasing = T),],10)
-knitr::kable(
-overseastudentcountresult
-)
 ```
 
-| country  |  count| locationy | locationx   | type   |
-|:---------|------:|:----------|:------------|:-------|
-| 馬來西亞 |   7013| 3.137956  | 101.687132  | 亞洲   |
-| 印尼     |   1100| -4.381767 | 122.293216  | 亞洲   |
-| 緬甸     |    451| 21.415178 | 96.396717   | 亞洲   |
-| 越南     |    306| 14.484540 | 108.360975  | 亞洲   |
-| 泰國     |    259| 13.741785 | 100.499849  | 亞洲   |
-| 美國     |    251| 39.739020 | -101.620433 | 北美洲 |
-| 南韓     |    187| 37.592579 | 126.975279  | 亞洲   |
-| 加拿大   |    179| 59.997026 | -112.402012 | 北美洲 |
-| 日本     |    174| 36.552849 | 138.307262  | 亞洲   |
-| 新加坡   |     88| 1.360033  | 103.868979  | 亞洲   |
+各級學校僑生現況
+================
 
 ``` r
 library(ggplot2)
@@ -949,20 +951,6 @@ library(ggplot2)
     ## Warning: package 'ggplot2' was built under R version 3.3.3
 
 ``` r
-qplot(x=country,                               
-      y=count,                              
-      data=head(overseastudentcountanalyze[order(overseastudentcountanalyze$count,decreasing = T),],10),                    geom="point",                         
-      main = "僑居地前十名及人數",  
-      xlab="僑居地",                          
-      ylab="人數",
-      color = country
-      )
-```
-
-![](README_files/figure-markdown_github/unnamed-chunk-2-1.png)
-
-``` r
-#各級學校僑生現況
 presentofoversea<-head(File_1940[order(File_1940$"學年度",decreasing = T),],10)
 presentofoversea104 <- presentofoversea[grepl("104",presentofoversea$"學年度"),]
 presentofoversea104$"學年度" <- NULL
@@ -979,7 +967,7 @@ geom_bar(aes(x=factor(1),
 presentofoversea104chart
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-2-2.png)
+![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 ``` r
 presentofoversea104L$"比例(%)" <- (as.numeric(presentofoversea104L$values)/sum(as.numeric(presentofoversea104L$values)))*100
@@ -1006,245 +994,10 @@ knitr::kable(os104summary)
 | 各級補校   | 6        |  0.0231267 |
 | 海青班     | 1179     |  4.5444033 |
 
-``` r
-#僑生入讀台灣大專學校情況
-schoolcountanalyze =  summarise(group_by(X104oversea_B1_1a,school), "人數" = sum(studentcount)) 
-
-#僑生入讀台灣大專學校率
-student101rate <- sum(as.numeric(student101data$overseastudentcount))
-student102rate <- sum(as.numeric(student102data$overseastudentcount))
-student103rate <- sum(as.numeric(student103data$overseastudentcount))
-student104rate <- sum(as.numeric(student104data$overseastudentcount))
-student105rate <- sum(as.numeric(student105data$overseastudentcount))
-osstudent101to105rate <- c(student101rate,student102rate,student103rate,student104rate,student105rate)
-statyear <- c("101","102","103","104","105")
-overseastudentrate <- data.frame(statyear,osstudent101to105rate)
-
-knitr::kable(overseastudentrate)
-```
-
-| statyear |  osstudent101to105rate|
-|:---------|----------------------:|
-| 101      |                   7127|
-| 102      |                   7768|
-| 103      |                   8791|
-| 104      |                   9717|
-| 105      |                  10430|
+僑居地前十名及人數
+------------------
 
 ``` r
-ggplot(overseastudentrate, aes(x=statyear, y=osstudent101to105rate, group = 1)) + geom_line()
-```
-
-![](README_files/figure-markdown_github/unnamed-chunk-2-3.png)
-
-``` r
-#旅客來台旅遊率
-visitor101to105rate <- visitorstatictis1
-for (i in 1:56){
-  visitor101to105rate <- visitor101to105rate[-1,]
-}
-ROCYear <- c("101","102","103","104")
-visitor101to105rate$ROCYear <- ROCYear
-
-ggplot(visitor101to105rate, aes(x=ROCYear, y=pop, group = 1)) + geom_line()
-```
-
-![](README_files/figure-markdown_github/unnamed-chunk-2-4.png)
-
-``` r
-##最多僑生入讀的大專學校
-knitr::kable(
-head(schoolcountanalyze[order(schoolcountanalyze$"人數",decreasing = T),],10)
-)
-```
-
-| school                 | 人數 |
-|:-----------------------|:----:|
-| 國立臺灣師大僑生先修部 |  744 |
-| 國立臺灣大學           |  691 |
-| 國立政治大學           |  363 |
-| 國立成功大學           |  354 |
-| 淡江大學               |  315 |
-| 國立臺灣師範大學       |  313 |
-| 銘傳大學               |  261 |
-| 國立暨南國際大學       |  237 |
-| 國立中興大學           |  233 |
-| 輔仁大學               |  232 |
-
-``` r
-#國立大學僑生現況
-presentofnational<-Student_RPT_05[grepl("公立",Student_RPT_05$"typeofschool"),]
-presentofnationaltop <-  summarise(group_by(presentofnational,schoolname), "人數" = sum(as.numeric(overseastudentcount)))
-knitr::kable(
-  head(presentofnationaltop[order(presentofnationaltop$"人數",decreasing = T),],10)
-)
-```
-
-| schoolname       | 人數 |
-|:-----------------|:----:|
-| 國立臺灣大學     | 3526 |
-| 國立成功大學     | 1674 |
-| 國立政治大學     | 1578 |
-| 國立臺灣師範大學 | 1491 |
-| 國立中興大學     | 1097 |
-| 國立暨南國際大學 | 1094 |
-| 國立交通大學     |  954 |
-| 國立嘉義大學     |  939 |
-| 國立中正大學     |  746 |
-| 國立臺北大學     |  722 |
-
-``` r
-#私立大學僑生現況
-presentofprivate<-Student_RPT_05[grepl("私立",Student_RPT_05$"typeofschool"),]
-presentofprivatetop <-  summarise(group_by(presentofprivate,schoolname), "人數" = sum(as.numeric(overseastudentcount)))
-knitr::kable(
-  head(presentofprivatetop[order(presentofprivatetop$"人數",decreasing = T),],10)
-)
-```
-
-| schoolname   | 人數 |
-|:-------------|:----:|
-| 淡江大學     | 1401 |
-| 銘傳大學     | 1160 |
-| 輔仁大學     | 1111 |
-| 中國文化大學 | 1074 |
-| 世新大學     | 1014 |
-| 高雄醫學大學 |  912 |
-| 逢甲大學     |  900 |
-| 東海大學     |  818 |
-| 臺北醫學大學 |  797 |
-| 中國醫藥大學 |  723 |
-
-``` r
-###最多僑生入讀的科系
-library(dplyr)
-majorcountanalyze =  summarise(group_by(Student_RPT_05,Major), "僑生人數" = sum(as.numeric(overseastudentcount)), "港澳生人數" = sum(as.numeric(HKMacaustudentcount)))
-osmajorresult <- data.frame(majorcountanalyze$Major,majorcountanalyze$"僑生人數")
-knitr::kable(
-  head(osmajorresult[order(majorcountanalyze$"僑生人數",decreasing = T),],10)
-)
-```
-
-|      | majorcountanalyze.Major | majorcountanalyze.僑生人數 |
-|------|:------------------------|:--------------------------:|
-| 2100 | 醫學系                  |            1911            |
-| 476  | 企業管理學系            |            1370            |
-| 1491 | 資訊工程學系            |             882            |
-| 1655 | 電機工程學系            |             709            |
-| 1542 | 資訊管理學系            |             692            |
-| 1059 | 財務金融學系            |             622            |
-| 1156 | 國際企業學系            |             577            |
-| 139  | 中國文學系              |             575            |
-| 1471 | 經濟學系                |             543            |
-| 1190 | 國際經營與貿易學系      |             514            |
-
-``` r
-###最多港澳生入讀的科系
-hkmmajorresult <- data.frame(majorcountanalyze$Major,majorcountanalyze$"港澳生人數")
-knitr::kable(
-  head(hkmmajorresult[order(majorcountanalyze$"港澳生人數",decreasing = T),],10)
-)
-```
-
-|      | majorcountanalyze.Major | majorcountanalyze.港澳生人數 |
-|------|:------------------------|:----------------------------:|
-| 476  | 企業管理學系            |             1279             |
-| 1491 | 資訊工程學系            |             1044             |
-| 1542 | 資訊管理學系            |              866             |
-| 139  | 中國文學系              |              788             |
-| 1886 | 歷史學系                |              787             |
-| 1471 | 經濟學系                |              786             |
-| 1467 | 會計學系                |              720             |
-| 1059 | 財務金融學系            |              707             |
-| 283  | 日本語文學系            |              660             |
-| 736  | 社會工作學系            |              629             |
-
-``` r
-#長庚大學僑生現況
-test105<-Student_RPT_05[grepl("105",Student_RPT_05$"year"),]
-testcgu<-test105[grepl("長庚大學",test105$"schoolname"),]
-names(testcgu)[1] <-"學年"
-names(testcgu)[2] <-"設立別"
-names(testcgu)[3] <-"學校類別"
-names(testcgu)[4] <-"學校代碼"
-names(testcgu)[5] <-"學校名稱"
-names(testcgu)[6] <-"系所代碼"
-names(testcgu)[7] <-"系所"
-names(testcgu)[8] <-"學制"
-names(testcgu)[9] <-"僑生人數"
-names(testcgu)[10] <-"僑生_男"
-names(testcgu)[11] <-"僑生_女"
-names(testcgu)[12] <-"港澳生人數"
-names(testcgu)[13] <-"港澳生_男"
-names(testcgu)[14] <-"港澳生_女"
-
-cgucount <- as.numeric(testcgu$"僑生人數")+as.numeric(testcgu$"港澳生人數")
-testcgu$count <- as.numeric(testcgu$"僑生人數")+as.numeric(testcgu$"港澳生人數")
-
-testcguL <- data.frame(testcgu$"系所",testcgu$count)
-names(testcguL)[1] <-"Major"
-
-testcguchart <- ggplot(data=testcguL) +
-geom_bar(aes(x=factor(1),
-                 y=testcgu.count,
-                 fill=Major),
-             stat = "identity"
-             ) + coord_polar("y", start=0)
-testcguchart
-```
-
-![](README_files/figure-markdown_github/unnamed-chunk-2-5.png)
-
-``` r
-knitr::kable(
-  head(testcguL[order(testcguL$testcgu.count,decreasing = T),],10)
-)
-```
-
-|     | Major                  |  testcgu.count|
-|-----|:-----------------------|--------------:|
-| 13  | 醫學系                 |             39|
-| 22  | 醫學生物技術暨檢驗學系 |             16|
-| 4   | 生物醫學系             |             13|
-| 15  | 中醫學系               |             10|
-| 20  | 護理學系               |             10|
-| 24  | 醫學影像暨放射科學系   |             10|
-| 3   | 醫務管理學系           |              8|
-| 17  | 物理治療學系           |              7|
-| 2   | 工商管理學系           |              5|
-| 10  | 機械工程學系           |              5|
-
-``` r
-##長庚大學資管系僑生現況
-cguimosstudent<-testcgu[grepl("資訊管理學系",testcgu$"系所"),]
-names(cguimosstudent)[1] <-"學年"
-names(cguimosstudent)[2] <-"設立別"
-names(cguimosstudent)[3] <-"學校類別"
-names(cguimosstudent)[4] <-"學校代碼"
-names(cguimosstudent)[5] <-"學校名稱"
-names(cguimosstudent)[6] <-"系所代碼"
-names(cguimosstudent)[7] <-"系所"
-names(cguimosstudent)[8] <-"學制"
-names(cguimosstudent)[9] <-"僑生人數"
-names(cguimosstudent)[10] <-"僑生_男"
-names(cguimosstudent)[11] <-"僑生_女"
-names(cguimosstudent)[12] <-"港澳生人數"
-names(cguimosstudent)[13] <-"港澳生_男"
-names(cguimosstudent)[14] <-"港澳生_女"
-knitr::kable(
-  head(cguimosstudent)
-)
-```
-
-| 學年 | 設立別 | 學校類別 | 學校代碼 | 學校名稱 | 系所代碼 | 系所         | 學制         | 僑生人數 | 僑生\_男 | 僑生\_女 | 港澳生人數 | 港澳生\_男 | 港澳生\_女 |  count|
-|:-----|:-------|:---------|:---------|:---------|:---------|:-------------|:-------------|:---------|:---------|:---------|:-----------|:-----------|:-----------|------:|
-| 105  | 私立   | 一般大學 | 1009     | 長庚大學 | 480109   | 資訊管理學系 | 學士班(日間) | 0        | 0        | 0        | 2          | 1          | 1          |      2|
-
-資料分析
---------
-
-``` r
-#這是R Code Chunk
 library(ggplot2)
 library(choroplethr)
 ```
@@ -1314,9 +1067,50 @@ WorldMapO <- WorldMap + geom_point(data=overseastudentcountanalyze,
 WorldMapO
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 ``` r
+overseastudentcountresult <- head(overseastudentcountanalyze[order(overseastudentcountanalyze$count,decreasing = T),],10)
+knitr::kable(
+overseastudentcountresult
+)
+```
+
+| country  |  count| locationy | locationx   | type   |
+|:---------|------:|:----------|:------------|:-------|
+| 馬來西亞 |   7013| 3.137956  | 101.687132  | 亞洲   |
+| 印尼     |   1100| -4.381767 | 122.293216  | 亞洲   |
+| 緬甸     |    451| 21.415178 | 96.396717   | 亞洲   |
+| 越南     |    306| 14.484540 | 108.360975  | 亞洲   |
+| 泰國     |    259| 13.741785 | 100.499849  | 亞洲   |
+| 美國     |    251| 39.739020 | -101.620433 | 北美洲 |
+| 南韓     |    187| 37.592579 | 126.975279  | 亞洲   |
+| 加拿大   |    179| 59.997026 | -112.402012 | 北美洲 |
+| 日本     |    174| 36.552849 | 138.307262  | 亞洲   |
+| 新加坡   |     88| 1.360033  | 103.868979  | 亞洲   |
+
+``` r
+library(ggplot2)
+
+qplot(x=country,                               
+      y=count,                              
+      data=head(overseastudentcountanalyze[order(overseastudentcountanalyze$count,decreasing = T),],10),                    geom="point",                         
+      main = "僑居地前十名及人數",  
+      xlab="僑居地",                          
+      ylab="人數",
+      color = country
+      )
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-9-2.png)
+
+僑居地(各大洲情況)
+------------------
+
+``` r
+library(ggplot2)
+library(choroplethr)
+library(ggmap)
 AsiaMap <- get_map(location = "Asia", zoom = 3, maptype = 'satellite',language = "zh-TW")
 ```
 
@@ -1336,7 +1130,7 @@ AsiaMapO
 
     ## Warning: Removed 2 rows containing missing values (geom_point).
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-2.png)
+![](README_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 ``` r
 EuroMap <- get_map(location = "Europe", zoom = 3, maptype = 'satellite')
@@ -1358,7 +1152,7 @@ EuroMapO
 
     ## Warning: Removed 1 rows containing missing values (geom_point).
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-3.png)
+![](README_files/figure-markdown_github/unnamed-chunk-10-2.png)
 
 ``` r
 OceaniaMap <- get_map(location = "Oceania", zoom = 3, maptype = 'satellite')
@@ -1378,7 +1172,7 @@ OceaniaMapO <- ggmap(OceaniaMap)+ geom_point(data=Oceaniadata,
 OceaniaMapO
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-4.png)
+![](README_files/figure-markdown_github/unnamed-chunk-10-3.png)
 
 ``` r
 AfricaMap <- get_map(location = "Africa", zoom = 3, maptype = 'satellite')
@@ -1398,7 +1192,7 @@ AfricaMapO <- ggmap(AfricaMap)+ geom_point(data=SAfricadata,
 AfricaMapO
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-5.png)
+![](README_files/figure-markdown_github/unnamed-chunk-10-4.png)
 
 ``` r
 NAMap <- get_map(location = "North America", zoom = 3, maptype = 'satellite')
@@ -1420,7 +1214,7 @@ NAMapO
 
     ## Warning: Removed 1 rows containing missing values (geom_point).
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-6.png)
+![](README_files/figure-markdown_github/unnamed-chunk-10-5.png)
 
 ``` r
 SAMap <- get_map(location = "South America", zoom = 3, maptype = 'satellite')
@@ -1440,10 +1234,183 @@ SAMapO <- ggmap(SAMap)+ geom_point(data=SAdata,
 SAMapO
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-7.png)
+![](README_files/figure-markdown_github/unnamed-chunk-10-6.png)
+
+僑居地分析(馬來西亞)
+====================
 
 ``` r
-#Visitor Map
+AsiaMapO
+```
+
+    ## Warning: Removed 2 rows containing missing values (geom_point).
+
+![](README_files/figure-markdown_github/unnamed-chunk-11-1.png) 馬來西亞位居僑生人數榜首
+
+Why?
+
+哈台,? 台灣連續劇? 偶像?
+
+1.馬來西亞當地嚴重排華 2.馬來西亞大學制度對當地華人並不公平 3.來台留學學費便宜
+
+參考資料: <https://bbstop.amassly.com/post/Gossiping_1Kbz8CSe>
+
+僑居地分析(美國)
+================
+
+``` r
+NAMapO
+```
+
+    ## Warning: Removed 1 rows containing missing values (geom_point).
+
+![](README_files/figure-markdown_github/unnamed-chunk-12-1.png) 美國華僑都喜歡歸台?
+
+Why?
+
+1.美國醫學院沒畢業就欠一屁股債 2.學費美國十分之一 3.美國考醫師執照難
+
+參考資料: <http://www.ccyp.com/ccypcontents?content_id=96054> <http://ns2.doctorvoice.org/viewtopic.php?f=24&t=77986>
+
+僑生入讀台灣大專學校情況
+========================
+
+``` r
+library(dplyr)
+student101rate <- sum(as.numeric(student101data$overseastudentcount))
+student102rate <- sum(as.numeric(student102data$overseastudentcount))
+student103rate <- sum(as.numeric(student103data$overseastudentcount))
+student104rate <- sum(as.numeric(student104data$overseastudentcount))
+student105rate <- sum(as.numeric(student105data$overseastudentcount))
+osstudent101to105rate <- c(student101rate,student102rate,student103rate,student104rate,student105rate)
+statyear <- c("101","102","103","104","105")
+overseastudentrate <- data.frame(statyear,osstudent101to105rate)
+
+knitr::kable(overseastudentrate)
+```
+
+| statyear |  osstudent101to105rate|
+|:---------|----------------------:|
+| 101      |                   7127|
+| 102      |                   7768|
+| 103      |                   8791|
+| 104      |                   9717|
+| 105      |                  10430|
+
+``` r
+ggplot(overseastudentrate, aes(x=statyear, y=osstudent101to105rate, group = 1)) + geom_line()
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-13-1.png)
+
+最多僑生入讀的大專學校
+======================
+
+``` r
+schoolcountanalyze <- summarise(group_by(X104oversea_B1_1a,school), "人數" = sum(studentcount)) 
+knitr::kable(
+head(schoolcountanalyze[order(schoolcountanalyze$"人數",decreasing = T),],10)
+)
+```
+
+|       |
+|------:|
+|  10461|
+
+最多僑生入讀的科系
+==================
+
+majorcountanalyze &lt;- summarise(group\_by(Student\_RPT\_05,Major), "僑生人數" = sum(as.numeric(overseastudentcount))) osmajorresult &lt;- data.frame(majorcountanalyze*M**a**j**o**r*, *m**a**j**o**r**c**o**u**n**t**a**n**a**l**y**z**e*"僑生人數") knitr::kable( head(osmajorresult\[order(majorcountanalyze$"僑生人數",decreasing = T),\],10) )
+
+長庚大學僑生現況
+================
+
+``` r
+test105<-Student_RPT_05[grepl("105",Student_RPT_05$"year"),]
+testcgu<-test105[grepl("長庚大學",test105$"schoolname"),]
+names(testcgu)[1] <-"學年"
+names(testcgu)[2] <-"設立別"
+names(testcgu)[3] <-"學校類別"
+names(testcgu)[4] <-"學校代碼"
+names(testcgu)[5] <-"學校名稱"
+names(testcgu)[6] <-"系所代碼"
+names(testcgu)[7] <-"系所"
+names(testcgu)[8] <-"學制"
+names(testcgu)[9] <-"僑生人數"
+names(testcgu)[10] <-"僑生_男"
+names(testcgu)[11] <-"僑生_女"
+names(testcgu)[12] <-"港澳生人數"
+names(testcgu)[13] <-"港澳生_男"
+names(testcgu)[14] <-"港澳生_女"
+
+cgucount <- as.numeric(testcgu$"僑生人數")+as.numeric(testcgu$"港澳生人數")
+testcgu$count <- as.numeric(testcgu$"僑生人數")+as.numeric(testcgu$"港澳生人數")
+
+testcguL <- data.frame(testcgu$"系所",testcgu$count)
+names(testcguL)[1] <-"Major"
+
+testcguchart <- ggplot(data=testcguL) +
+geom_bar(aes(x=factor(1),
+                 y=testcgu.count,
+                 fill=Major),
+             stat = "identity"
+             ) + coord_polar("y", start=0)
+testcguchart
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-15-1.png)
+
+``` r
+knitr::kable(
+  head(testcguL[order(testcguL$testcgu.count,decreasing = T),],10)
+)
+```
+
+|     | Major                  |  testcgu.count|
+|-----|:-----------------------|--------------:|
+| 13  | 醫學系                 |             39|
+| 22  | 醫學生物技術暨檢驗學系 |             16|
+| 4   | 生物醫學系             |             13|
+| 15  | 中醫學系               |             10|
+| 20  | 護理學系               |             10|
+| 24  | 醫學影像暨放射科學系   |             10|
+| 3   | 醫務管理學系           |              8|
+| 17  | 物理治療學系           |              7|
+| 2   | 工商管理學系           |              5|
+| 10  | 機械工程學系           |              5|
+
+長庚大學資管系僑生現況
+----------------------
+
+``` r
+cguimosstudent<-testcgu[grepl("資訊管理學系",testcgu$"系所"),]
+names(cguimosstudent)[1] <-"學年"
+names(cguimosstudent)[2] <-"設立別"
+names(cguimosstudent)[3] <-"學校類別"
+names(cguimosstudent)[4] <-"學校代碼"
+names(cguimosstudent)[5] <-"學校名稱"
+names(cguimosstudent)[6] <-"系所代碼"
+names(cguimosstudent)[7] <-"系所"
+names(cguimosstudent)[8] <-"學制"
+names(cguimosstudent)[9] <-"僑生人數"
+names(cguimosstudent)[10] <-"僑生_男"
+names(cguimosstudent)[11] <-"僑生_女"
+names(cguimosstudent)[12] <-"港澳生人數"
+names(cguimosstudent)[13] <-"港澳生_男"
+names(cguimosstudent)[14] <-"港澳生_女"
+knitr::kable(
+  head(cguimosstudent)
+)
+```
+
+| 學年 | 設立別 | 學校類別 | 學校代碼 | 學校名稱 | 系所代碼 | 系所         | 學制         | 僑生人數 | 僑生\_男 | 僑生\_女 | 港澳生人數 | 港澳生\_男 | 港澳生\_女 |  count|
+|:-----|:-------|:---------|:---------|:---------|:---------|:-------------|:-------------|:---------|:---------|:---------|:-----------|:-----------|:-----------|------:|
+| 105  | 私立   | 一般大學 | 1009     | 長庚大學 | 480109   | 資訊管理學系 | 學士班(日間) | 0        | 0        | 0        | 2          | 1          | 1          |      2|
+
+旅客來台旅遊情況
+================
+
+``` r
 WorldMapvisitor <- ggmap(get_googlemap(center=c(0,0),
                                        zoom=1, scale=1, filename="world", size=c(550,250)))
 ```
@@ -1460,7 +1427,7 @@ WorldMapvisitorO <- WorldMapvisitor + geom_point(data=X100to105v1,
 WorldMapvisitorO
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-8.png)
+![](README_files/figure-markdown_github/unnamed-chunk-17-1.png)
 
 ``` r
 visitor2016rank <- data.frame(X100to105v1$"國籍",X100to105v1$count2016)
@@ -1485,7 +1452,28 @@ knitr::kable(
 | 7   | 菲律賓   |    171816    |
 | 10  | 加拿大   |    143691    |
 
-期末專題分析規劃
-----------------
+旅客來台旅遊率
+==============
 
-期末專題會結合手上的資料，按照不同國藉的僑生人數製作圖表及一個世界分佈地圖。然後還會了解數據，找出一些關於僑生的有趣現象在課堂報告跟老師和同學分享。
+``` r
+visitor101to105rate <- visitorstatictis1
+for (i in 1:56){
+  visitor101to105rate <- visitor101to105rate[-1,]
+}
+ROCYear <- c("101","102","103","104")
+visitor101to105rate$ROCYear <- ROCYear
+
+ggplot(visitor101to105rate, aes(x=ROCYear, y=pop, group = 1)) + geom_line()
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-18-1.png)
+
+結論
+----
+
+綜合了僑生來台就學和來台旅客的成長率還有和僑生僑居地和來台旅客國籍資料…. 因此推斷台灣旅遊與僑生來台就學有關係
+
+數據來源
+--------
+
+歷年來台旅客統計: <http://data.gov.tw/node/7322> 大學、技專校院各系所僑生、港澳生數: <http://data.gov.tw/node/26210> 全臺灣按性別、校別與僑居地別分之中等以下各級學校僑生、港澳生及畢業生人數 <http://data.gov.tw/node/33506> 各級學校及海青班在學僑生人數統計 <http://data.gov.tw/node/6112> 來台旅客居住國統計 <http://data.gov.tw/node/7323>
